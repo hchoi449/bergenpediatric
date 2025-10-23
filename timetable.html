@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Timetable - ThinkBigPrep</title>
+        <meta name="description" content="View class schedules and book sessions with ThinkBigPrep tutors" />
+        <!-- Open Graph / Social preview -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="ThinkBigPrep Timetable" />
+        <meta property="og:description" content="View class schedules and book sessions." />
+        <meta property="og:image" content="/assets/logo/thinkbigprep-icon.svg" />
+        <meta property="og:image:type" content="image/svg+xml" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ThinkBigPrep Timetable" />
+        <meta name="twitter:description" content="View class schedules and book sessions." />
+        <meta name="twitter:image" content="/assets/logo/thinkbigprep-icon.svg" />
+        <link rel="shortcut icon" href="assets/logo/thinkbigprep-icon.svg" type="image/svg+xml" />
+        <link rel="stylesheet" href="css/index.css?v=1.1" />
+        <link rel="stylesheet" href="css/login.css?v=1.0" />
+        <link rel="stylesheet" href="css/timetable.css?v=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+    </head>
+    <body class="timetable">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <a href="index.html#home" class="logo" style="text-decoration:none;color:inherit;">
+                    <img src="./assets/logo/thinkbigprep-logo.svg" alt="ThinkBigPrep Logo" />
+                </a>
+                
+                <nav class="nav-desktop">
+                    <a href="index.html">Home</a>
+                    <a href="timetable.html" class="active">Timetable</a>
+                    <a href="index.html#courses">Plans</a>
+                    <a href="index.html#coaches">Available Tutors</a>
+                    <a href="index.html#about">About Us</a>
+                    <a href="jarvis.html">Jarvis</a>
+                    <a href="ai-curriculum.html">AI Curriculum</a>
+                    <a href="problem-sets.html">Think Lab <span class="new-tag">NEW</span></a>
+                    <a href="login.html" class="student-login-link">Student Login</a>
+                </nav>
+                
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+            
+            <nav class="nav-mobile" id="mobile-menu">
+                <a href="index.html">Home</a>
+                <a href="timetable.html" class="active">Timetable</a>
+                <a href="index.html#courses">Plans</a>
+                <a href="index.html#coaches">Available Engineers</a>
+                <a href="index.html#about">About Us</a>
+                <a href="ai-curriculum.html">AI Curriculum</a>
+                <a href="problem-sets.html">Think Lab <span class="new-tag">NEW</span></a>
+                <a href="index.html#student-hub">Enroll Now</a>
+            </nav>
+        </header>
+
+        <!-- Timetable Hero Section -->
+        <section class="timetable-hero">
+            <div class="container">
+                <h1 class="timetable-title">Class Timetable</h1>
+                <p class="timetable-subtitle">View available sessions and book your preferred time slots</p>
+                
+                <!-- View Toggle -->
+                <div class="view-toggle">
+                    <button class="toggle-btn active" data-view="week">
+                        <i class="bi bi-calendar-week"></i>
+                        Week View
+                    </button>
+                    <button class="toggle-btn" data-view="month">
+                        <i class="bi bi-calendar-month"></i>
+                        Month View
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timetable Content -->
+        <section class="timetable-content">
+            <div class="container">
+                <!-- Week View -->
+                <div class="timetable-view" id="week-view">
+                    <div class="week-header">
+                        <button class="nav-btn" onclick="previousWeek()">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <h2 class="current-week" id="current-week">August 26 - September 1, 2025</h2>
+                        <button class="nav-btn" onclick="nextWeek()">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="week-grid">
+                        <div class="time-column">
+                            <div class="time-header">Time (EST)</div>
+                            <div class="time-slots">
+                                <div class="time-slot">12:00 PM</div>
+                                <div class="time-slot">1:00 PM</div>
+                                <div class="time-slot">2:00 PM</div>
+                                <div class="time-slot">3:00 PM</div>
+                                <div class="time-slot">4:00 PM</div>
+                                <div class="time-slot">5:00 PM</div>
+                                <div class="time-slot">6:00 PM</div>
+                                <div class="time-slot">7:00 PM</div>
+                                <div class="time-slot">8:00 PM</div>
+                                <div class="time-slot">9:00 PM</div>
+                                <div class="time-slot">10:00 PM</div>
+                                <div class="time-slot">11:00 PM</div>
+                                <div class="time-slot">12:00 AM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="day-column">
+                            <div class="day-header">Monday</div>
+                            <div class="day-slots"></div>
+                        </div>
+                        
+                        <div class="day-column">
+                            <div class="day-header">Tuesday</div>
+                            <div class="day-slots"></div>
+                        </div>
+                        
+                        <div class="day-column">
+                            <div class="day-header">Wednesday</div>
+                            <div class="day-slots"></div>
+                        </div>
+                        
+                        <div class="day-column">
+                            <div class="day-header">Thursday</div>
+                            <div class="day-slots"></div>
+                        </div>
+                        
+                        <div class="day-column">
+                            <div class="day-header">Friday</div>
+                            <div class="day-slots"></div>
+                        </div>
+                        
+                        <div class="day-column">
+                            <div class="day-header">Saturday</div>
+                            <div class="day-slots"></div>
+                        </div>
+                        
+                        <div class="day-column">
+                            <div class="day-header">Sunday</div>
+                            <div class="day-slots"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Month View -->
+                <div class="timetable-view" id="month-view" style="display: none;">
+                    <div class="month-header">
+                        <button class="nav-btn" onclick="previousMonth()">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <h2 class="current-month" id="current-month">August 2025</h2>
+                        <button class="nav-btn" onclick="nextMonth()">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="month-grid" id="month-grid">
+                        <!-- Month grid will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                
+            </div>
+        </section>
+
+        <!-- Assignments Drawer Toggle -->
+        <button id="assignments-tab" aria-controls="assignments-drawer" aria-expanded="false" title="Assignments">
+            <i class="bi bi-card-checklist"></i>
+        </button>
+
+        <!-- Assignments Drawer -->
+        <aside id="assignments-drawer" aria-hidden="true">
+            <div class="drawer-header">
+                <h3>Assignments (Next 7 Days)</h3>
+                <button class="drawer-close" aria-label="Close assignments">×</button>
+            </div>
+            <div class="drawer-body">
+                <div class="drawer-loading" id="assignments-loading"><div class="tbp-star-spinner" aria-label="Loading"></div></div>
+                <div class="drawer-empty">No assignments for this week.</div>
+                <div id="assignments-sections">
+                    <section class="drawer-section" id="section-exams">
+                        <h4 class="drawer-section-title">Exams/Assessments <span class="drawer-caret" aria-hidden="true">▾</span></h4>
+                        <div class="weekday-group" id="exams-groups"></div>
+                    </section>
+                    <section class="drawer-section" id="section-homework">
+                        <h4 class="drawer-section-title">Homework <span class="drawer-caret" aria-hidden="true">▾</span></h4>
+                        <div class="weekday-group" id="homework-groups"></div>
+                    </section>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <img src="./assets/logo/thinkbigprep-logo.svg" alt="ThinkBigPrep" />
+                            <span>ThinkBigPrep</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>SEE ALSO</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="timetable.html">Timetable</a></li>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="index.html#student-hub">Student Hub</a></li>
+                            <li><a href="ai-curriculum.html">AI Curriculum</a></li>
+                            <li><a href="index.html#coaches">Available Tutors</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>CONTACT US</h4>
+                        <p>Phone: 201-665-0123</p>
+                        <p>Email: info@thinkbigprep.com</p>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>ThinkBigPrep © 2025</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>window.TBP_AUTH_BASE='https://cramprep.onrender.com';</script>
+        <script src="index.js"></script>
+        <script src="login.js?v=1.0"></script>
+        <script src="timetable.js"></script>
+        <link rel="stylesheet" href="/assets/ai-chatbot/style.css">
+        <script>window.TBP_GEMINI_API_KEY = 'AIzaSyCCTKkPhoFGOurL2pysN3DCaVCn3kC9Q1U';</script>
+        <script src="/assets/ai-chatbot/script.js"></script>
+        <button id="ai-chat-open" class="btn btn-primary floating-ai-btn">
+            <i class="bi bi-chat-dots"></i> Schedule AI
+        </button>
+        <!-- External AI Chatbox integration placeholder -->
+    </body>
+</html>

@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account - ThinkBigPrep</title>
+    <link rel="shortcut icon" href="assets/logo/thinkbigprep-icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/index.css?v=1.1" />
+    <link rel="stylesheet" href="css/login.css?v=1.0" />
+    <style>
+      .account-layout{display:grid;grid-template-columns:260px 1fr;gap:24px;max-width:1200px;min-height:calc(100vh - 220px);margin:120px auto 0;padding:0 20px 80px}
+      .account-sidebar{background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:18px}
+      .account-sidebar h4{font-size:12px;color:#6b7280;margin:8px 0 10px;font-weight:700;letter-spacing:.08em}
+      .account-nav a{display:block;padding:10px 12px;border-radius:8px;text-decoration:none;color:#1a1a1a;font-weight:600;margin-bottom:6px}
+      .account-nav a.active,.account-nav a:hover{background:#f8f9fa;color:#8B4513}
+      .account-content{background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:20px}
+      .account-section{margin-bottom:22px}
+      /* Tabs: show only active section */
+      .account-section{display:none}
+      .account-section.active{display:block}
+      /* Prevent resizing of multi-line notes */
+      .account-content textarea{resize:none}
+      .account-section h2{font-size:22px;margin:0 0 16px;color:#1a1a1a}
+      .account-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+      .account-grid .full{grid-column:1 / -1}
+      .account-grid textarea{width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:8px}
+      .account-grid label{display:block;font-weight:600;margin-bottom:6px}
+      .account-grid input{width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:8px}
+      .account-grid select{width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:8px;background:#fff}
+      .account-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:25px}
+      /* Small circle icon buttons */
+      .circle-btn{width:28px;height:28px;border-radius:9999px;border:1px solid #6b3410;background:#8B4513;color:#ffffff;font-weight:900;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+      .circle-btn:hover{background:#6b3410}
+      /* Tokens section */
+      .tokens-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 8px;border-bottom:1px solid #eee}
+      .tokens-left{display:flex;align-items:center;gap:24px}
+      .token-icon{width:96px;height:96px}
+      .tokens-label{font-size:1.8rem;font-weight:700;color:#1a1a1a}
+      .tokens-count{font-size:1.6rem;font-weight:800;color:#6b3410;margin-left:12px}
+      .token-add{background:#fff;border:2px solid #1a1a1a;padding:12px 24px;border-radius:16px;font-weight:700;cursor:pointer}
+    </style>
+  </head>
+  <body class="ai-curriculum">
+    <header class="header">
+      <div class="header-container">
+        <a href="index.html#home" class="logo" aria-label="ThinkBigPrep Logo" style="text-decoration:none;color:inherit;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" role="img" focusable="false">
+            <defs>
+              <linearGradient id="tbpGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#BFD0B0"/>
+                <stop offset="100%" stop-color="#E1DCC9"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(6,6)">
+              <rect x="0" y="0" width="36" height="36" rx="10" fill="url(#tbpGrad)"/>
+              <g transform="translate(18,18) rotate(-10)">
+                <path class="tbp-star" d="M0 -10 L2 -2 L10 0 L2 2 L0 10 L-2 2 L-10 0 L-2 -2 Z" fill="#6b3410" opacity="0.9"/>
+              </g>
+            </g>
+            <g fill="#6b3410" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-weight="700">
+              <text x="54" y="31" font-size="20">ThinkBigPrep</text>
+            </g>
+          </svg>
+        </a>
+        <nav class="nav-desktop">
+          <a href="index.html#home">Home</a>
+          <a href="timetable.html">Timetable</a>
+          <a href="index.html#courses">Plans</a>
+          <a href="index.html#coaches">Available Tutors</a>
+          <a href="about.html">About Us</a>
+          <a href="jarvis.html">Jarvis</a>
+          <a href="ai-curriculum.html">AI Curriculum</a>
+          <a href="problem-sets.html">Think Lab <span class="new-tag">NEW</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="account-layout">
+      <aside class="account-sidebar">
+        <h4>MY ACCOUNT</h4>
+        <nav class="account-nav">
+          <a href="#" data-target="#profile" class="active">Profile</a>
+          <a href="#" data-target="#emergency">Emergency Contact</a>
+          <a href="#" data-target="#tokens">Available Tokens</a>
+          <a href="#" data-target="#sessions">Session Log</a>
+          <a href="#" data-target="#goals">Goal Tracker</a>
+        </nav>
+      </aside>
+      <section class="account-content">
+        <div class="account-section active" id="profile">
+          <h2>Profile</h2>
+          <div class="account-grid">
+            <div>
+              <label>Full Name <span class="required-star">*</span></label>
+              <input id="acctFullName" type="text" placeholder="Your name" required />
+            </div>
+            <div>
+              <label>School <span class="required-star">*</span></label>
+              <input id="acctSchool" type="text" placeholder="e.g., Northern Valley Regional High School" required />
+            </div>
+            <div>
+              <label>Grade <span class="required-star">*</span></label>
+              <input id="acctGrade" type="text" placeholder="e.g., 10th grade" required />
+            </div>
+            <div>
+              <label>Email <span class="required-star">*</span></label>
+              <input id="acctEmail" type="email" placeholder="you@example.com" required />
+            </div>
+            <div>
+              <label>Phone Number</label>
+              <input id="acctPhone" type="tel" inputmode="numeric" placeholder="e.g., (201) 555-0123" />
+            </div>
+            <div>
+              <label>iCal (.ics) URL</label>
+              <input id="acctIcs" type="url" placeholder="https://calendar.google.com/calendar/ical/.../basic.ics" />
+            </div>
+            <div>
+              <label>Pronouns</label>
+              <input id="acctPronouns" type="text" placeholder="e.g., He/Him or She/Her" />
+            </div>
+            <div>
+              <label>Subjects of Focus</label>
+              <input id="acctSubjects" type="text" placeholder="e.g., Math, Chemistry, SAT/ACT Prep" />
+            </div>
+            <div class="full">
+              <label>Notes</label>
+              <textarea id="acctNotes" rows="5" placeholder="e.g., I play school soccer during the fall season."></textarea>
+            </div>
+          </div>
+          <div class="account-actions">
+            <button class="btn btn-secondary" id="acctSaveBtn">Save</button>
+          </div>
+        </div>
+        <div class="account-section" id="emergency">
+          <h2>Emergency Contact</h2>
+          <div class="account-grid">
+            <div>
+              <label>Parent/Guardian Name <span class="required-star">*</span></label>
+              <input type="text" id="ecName_0" placeholder="e.g., John Doe" required />
+            </div>
+            <div>
+              <label>Parent/Guardian Email <span class="required-star">*</span></label>
+              <input type="email" id="ecEmail_0" placeholder="parent@example.com" required />
+            </div>
+            <div>
+              <label>Parent/Guardian Phone Number <span class="required-star">*</span></label>
+              <input type="tel" id="ecPhone_0" placeholder="e.g., (201) 555-0123" required />
+            </div>
+            <div>
+              <label>Contact Preference <span class="required-star">*</span></label>
+              <select id="ecPref_0" required>
+                <option value="Email">Email</option>
+                <option value="Phone">Phone Number</option>
+                <option value="Both">Both</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Parent/Guardian Name</label>
+              <input type="text" id="ecName_1" placeholder="e.g., Jane Doe" />
+            </div>
+            <div>
+              <label>Parent/Guardian Email</label>
+              <input type="email" id="ecEmail_1" placeholder="parent2@example.com" />
+            </div>
+            <div>
+              <label>Parent/Guardian Phone Number</label>
+              <input type="tel" id="ecPhone_1" placeholder="e.g., (201) 555-0456" />
+            </div>
+            <div>
+              <label>Contact Preference</label>
+              <select id="ecPref_1">
+                <option value="Email">Email</option>
+                <option value="Phone">Phone Number</option>
+                <option value="Both">Both</option>
+              </select>
+            </div>
+          </div>
+          <div class="account-actions" style="justify-content:flex-end;margin-top:32px;">
+            <button type="button" id="emergencySaveBtn" class="btn btn-secondary">Save</button>
+          </div>
+        </div>
+        <div class="account-section" id="tokens">
+          <h2>Available Tokens</h2>
+          <div class="tokens-row">
+            <div class="tokens-left">
+              <img src="assets/logo/token-cram-green.svg" alt="Cram Token" class="token-icon" />
+              <div class="tokens-label"># of Cram Session Token: <span id="cramCount" class="tokens-count">0</span></div>
+            </div>
+            <button class="token-add" id="addCramBtn">Add More</button>
+          </div>
+          <div class="tokens-row">
+            <div class="tokens-left">
+              <img src="assets/logo/token-private-blue.svg" alt="Private Token" class="token-icon" />
+              <div class="tokens-label"># of Private Session Token: <span id="privateCount" class="tokens-count">0</span></div>
+            </div>
+            <button class="token-add" id="addPrivateBtn">Add More</button>
+          </div>
+        </div>
+        <div class="account-section" id="sessions">
+          <h2>Session Log</h2>
+          <p>Recent sessions and attendance will appear here.</p>
+        </div>
+        <div class="account-section" id="goals">
+          <h2>Goal Tracker</h2>
+          <p>Track academic goals and milestones here.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-logo">
+              <img src="./assets/logo/thinkbigprep-logo.svg" alt="ThinkBigPrep" />
+              <span>ThinkBigPrep</span>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>GET STARTED</h4>
+            <ul>
+              <li><a href="index.html#home">Home</a></li>
+              <li><a href="timetable.html">Timetable</a></li>
+              <li><a href="index.html#courses">Plans</a></li>
+              <li><a href="index.html#coaches">Available Tutors</a></li>
+              <li><a href="ai-curriculum.html">AI Curriculum</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>CONTACT US</h4>
+            <p>Phone: +1 (201) 665-0123</p>
+            <p>Email: info@thinkbigprep.com</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>Copyright © 2025 ThinkBigPrep Inc. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="index.js"></script>
+    <script>window.TBP_AUTH_BASE='https://cramprep.onrender.com';</script>
+    <script src="login.js?v=1.0"></script>
+    <script>
+      (function(){
+        // simple tab switcher
+        (function setupTabs(){
+          const links = document.querySelectorAll('.account-nav a');
+          const sections = document.querySelectorAll('.account-section');
+          links.forEach(a => {
+            a.addEventListener('click', function(e){
+              e.preventDefault();
+              links.forEach(l => l.classList.remove('active'));
+              this.classList.add('active');
+              const id = this.getAttribute('data-target') || this.getAttribute('href');
+              sections.forEach(s => s.classList.remove('active'));
+              const target = document.querySelector(id);
+              if (target) target.classList.add('active');
+              // prevent any hash change/scroll
+              history.replaceState(null, '', location.pathname + location.search);
+            });
+          });
+        })();
+
+        // Add additional guardian blocks dynamically
+        (function setupAddGuardian(){
+          const addBtn = document.getElementById('addGuardianBtn');
+          const removeBtn = document.getElementById('removeLastGuardianBtn');
+          const container = document.getElementById('extraGuardians');
+          if (!addBtn || !container) return;
+          let idx = 1;
+          addBtn.addEventListener('click', function(){
+            if (idx >= 3) { try { showNotification('You can add up to 3 contacts.', 'error'); } catch {} return; }
+            const wrap = document.createElement('div');
+            wrap.className = 'account-grid';
+            wrap.innerHTML = `
+              <div class="full ec-row-header" style="border-bottom:1px solid #e5e7eb;padding-bottom:6px;margin-bottom:8px;">
+                <strong style="text-decoration:underline;">Contact ${idx+1}</strong>
+              </div>
+              <div>
+                <label>Parent/Guardian Name</label>
+                <input type="text" id="ecName_${idx}" placeholder="e.g., Jane Doe" />
+              </div>
+              <div>
+                <label>Parent/Guardian Email</label>
+                <input type="email" id="ecEmail_${idx}" placeholder="parent@example.com" />
+              </div>
+              <div>
+                <label>Parent/Guardian Phone Number</label>
+                <input type="tel" id="ecPhone_${idx}" placeholder="e.g., (201) 555-0123" />
+              </div>
+              <div>
+                <label>Contact Preference</label>
+                <select id="ecPref_${idx}">
+                  <option value="Email">Email</option>
+                  <option value="Phone">Phone Number</option>
+                  <option value="Both">Both</option>
+                </select>
+              </div>
+            `;
+            container.appendChild(wrap);
+            const delRow = document.createElement('div');
+            delRow.className = 'account-actions';
+            delRow.style.justifyContent = 'flex-start';
+            delRow.innerHTML = `<button type="button" class="circle-btn ec-del" aria-label="Delete">-</button>`;
+            wrap.appendChild(delRow);
+            const del = delRow.querySelector('.ec-del');
+            del.addEventListener('click', () => wrap.remove());
+            idx++;
+          });
+
+          if (removeBtn) {
+            removeBtn.addEventListener('click', function(){
+              const blocks = container.querySelectorAll('.account-grid');
+              if (blocks.length === 0) return;
+              blocks[blocks.length - 1].remove();
+              if (idx > 1) idx--;
+            });
+          }
+        })();
+
+        function fillFields(p){
+          if (!p) return;
+          const byId = (id) => /** @type {HTMLInputElement} */(document.getElementById(id));
+          if (p.fullName != null) byId('acctFullName').value = p.fullName || '';
+          if (p.school != null) byId('acctSchool').value = p.school || '';
+          if (p.grade != null) byId('acctGrade').value = p.grade || '';
+          if (p.email != null) byId('acctEmail').value = p.email || '';
+          if (p.phone != null) byId('acctPhone').value = p.phone || '';
+          if (p.icsUrl != null) byId('acctIcs').value = p.icsUrl || '';
+          if (p.pronouns != null) byId('acctPronouns').value = p.pronouns || '';
+          if (p.subjects != null) byId('acctSubjects').value = p.subjects || '';
+          if (p.notes != null) document.getElementById('acctNotes').value = p.notes || '';
+          // fill emergency contacts from flat fields if present
+          if (p.parentguardprimaryname != null) byId('ecName_0').value = p.parentguardprimaryname || '';
+          if (p.parentguardprimaryemail != null) byId('ecEmail_0').value = p.parentguardprimaryemail || '';
+          if (p.parentguardprimaryphone != null) byId('ecPhone_0').value = p.parentguardprimaryphone || '';
+          if (p.parentguardprimarypreference != null) byId('ecPref_0').value = p.parentguardprimarypreference || 'Email';
+          if (p.parentguardsecondaryname != null) byId('ecName_1').value = p.parentguardsecondaryname || '';
+          if (p.parentguardsecondaryemail != null) byId('ecEmail_1').value = p.parentguardsecondaryemail || '';
+          if (p.parentguardsecondaryphone != null) byId('ecPhone_1').value = p.parentguardsecondaryphone || '';
+          if (p.parentguardsecondarypreference != null) byId('ecPref_1').value = p.parentguardsecondarypreference || 'Email';
+          // fallback to array
+          if (Array.isArray(p.emergencyContacts)) {
+            const e0 = p.emergencyContacts[0] || {}; const e1 = p.emergencyContacts[1] || {};
+            if (!byId('ecName_0').value) byId('ecName_0').value = e0.name || '';
+            if (!byId('ecEmail_0').value) byId('ecEmail_0').value = e0.email || '';
+            if (!byId('ecPhone_0').value) byId('ecPhone_0').value = e0.phone || '';
+            if (e0.preference) byId('ecPref_0').value = e0.preference;
+            if (!byId('ecName_1').value) byId('ecName_1').value = e1.name || '';
+            if (!byId('ecEmail_1').value) byId('ecEmail_1').value = e1.email || '';
+            if (!byId('ecPhone_1').value) byId('ecPhone_1').value = e1.phone || '';
+            if (e1.preference) byId('ecPref_1').value = e1.preference;
+          }
+        }
+
+        try {
+          const raw = localStorage.getItem('tbp_user');
+          if (raw) {
+            const u = JSON.parse(raw);
+            fillFields({ fullName: u.fullName, email: u.email });
+          }
+        } catch {}
+
+        // Try to load saved profile from API
+        (async function loadProfile(){
+          try {
+            const token = localStorage.getItem('tbp_token');
+            if (!token) return;
+            const base = (window && window.TBP_AUTH_BASE ? window.TBP_AUTH_BASE.replace(/\/$/, '') : '');
+            const res = await fetch(`${base}/auth/profile`, { headers: { 'Authorization': `Bearer ${token}` } });
+            const j = await res.json().catch(() => ({}));
+            if (res.ok && j && j.profile) {
+              fillFields(j.profile);
+              try { localStorage.setItem('tbp_profile', JSON.stringify(j.profile)); } catch {}
+              // tokens
+              try {
+                const cram = document.getElementById('cramCount');
+                const priv = document.getElementById('privateCount');
+                if (cram) cram.textContent = String(j.profile.groupSessionTokens ?? 0);
+                if (priv) priv.textContent = String(j.profile.privateSessionTokens ?? 0);
+              } catch {}
+              return;
+            }
+          } catch {}
+          // Fallback to locally cached profile
+          try {
+            const cached = localStorage.getItem('tbp_profile');
+            if (cached) fillFields(JSON.parse(cached));
+          } catch {}
+        })();
+        document.getElementById('acctSaveBtn').addEventListener('click', async function(){
+          if (!document.getElementById('acctFullName').value.trim() ||
+              !document.getElementById('acctSchool').value.trim() ||
+              !document.getElementById('acctGrade').value.trim() ||
+              !document.getElementById('acctEmail').value.trim()) {
+            showNotification('Please fill all required fields.', 'error');
+            return;
+          }
+          const data = {
+            fullName: document.getElementById('acctFullName').value.trim(),
+            school: document.getElementById('acctSchool').value.trim(),
+            grade: document.getElementById('acctGrade').value.trim(),
+            email: document.getElementById('acctEmail').value.trim(),
+            phone: document.getElementById('acctPhone').value.trim(),
+            icsUrl: document.getElementById('acctIcs').value.trim(),
+            pronouns: document.getElementById('acctPronouns').value.trim(),
+            subjects: document.getElementById('acctSubjects').value.trim(),
+            notes: document.getElementById('acctNotes').value.trim(),
+          };
+          // Persist locally
+          try { localStorage.setItem('tbp_profile', JSON.stringify(data)); } catch {}
+          // Persist to API
+          try {
+            const token = localStorage.getItem('tbp_token');
+            if (!token) throw new Error('Please log in to save your profile.');
+            const base = (window && window.TBP_AUTH_BASE ? window.TBP_AUTH_BASE.replace(/\/$/, '') : '');
+            const res = await fetch(`${base}/auth/profile`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify(data)
+            });
+            const j = await res.json().catch(() => ({}));
+            if (!res.ok) throw new Error(j.error || 'Failed to save profile.');
+            // Update cached user for greeting
+            try {
+              const existing = JSON.parse(localStorage.getItem('tbp_user') || '{}');
+              const merged = { ...existing, fullName: data.fullName, email: data.email };
+              localStorage.setItem('tbp_user', JSON.stringify(merged));
+            } catch {}
+            showNotification('Profile saved!', 'successToast', 2200);
+          } catch (err) {
+            showNotification(err && err.message ? String(err.message) : 'Failed to save profile.', 'error');
+          }
+        });
+
+        // Save emergency contacts
+        const emergencySave = document.getElementById('emergencySaveBtn');
+        if (emergencySave) emergencySave.addEventListener('click', async function(){
+          const primary = {
+            name: document.getElementById('ecName_0').value.trim(),
+            email: document.getElementById('ecEmail_0').value.trim(),
+            phone: document.getElementById('ecPhone_0').value.trim(),
+            preference: document.getElementById('ecPref_0').value.trim()
+          };
+          if (!primary.name || !primary.email || !primary.phone || !primary.preference) {
+            showNotification('Please complete all required primary contact fields.', 'error');
+            return;
+          }
+          const secondary = {
+            name: document.getElementById('ecName_1').value.trim(),
+            email: document.getElementById('ecEmail_1').value.trim(),
+            phone: document.getElementById('ecPhone_1').value.trim(),
+            preference: document.getElementById('ecPref_1').value.trim()
+          };
+          const payload = { emergencyContacts: [primary, secondary] };
+          try {
+            const token = localStorage.getItem('tbp_token');
+            if (!token) throw new Error('Please log in to save your profile.');
+            const base = (window && window.TBP_AUTH_BASE ? window.TBP_AUTH_BASE.replace(/\/$/, '') : '');
+            const res = await fetch(`${base}/auth/emergency`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+              body: JSON.stringify(payload)
+            });
+            if (!res.ok) {
+              const j = await res.json().catch(() => ({}));
+              throw new Error(j.error || 'Failed to save emergency contacts.');
+            }
+            showNotification('Profile saved', 'successToast', 2000);
+          } catch (e) {
+            showNotification(e && e.message ? String(e.message) : 'Failed to save emergency contacts.', 'error');
+          }
+        });
+
+        // Auto-format phone numbers to (###) ####-#### when 11 digits are entered
+        function formatIf11Digits(el){
+          if (!el) return;
+          const raw = String(el.value || '').replace(/\D/g, '');
+          if (raw.length === 11 || raw.length === 10) {
+            const ten = raw.length === 11 ? raw.slice(-10) : raw; // use last 10 digits
+            el.value = `(${ten.slice(0,3)}) ${ten.slice(3,6)}-${ten.slice(6,10)}`;
+          }
+        }
+        [
+          document.getElementById('acctPhone'),
+          document.getElementById('ecPhone_0'),
+          document.getElementById('ecPhone_1')
+        ].forEach(function(el){
+          if (!el) return;
+          ['input','blur','change'].forEach(evt => el.addEventListener(evt, function(){ formatIf11Digits(el); }));
+        });
+      })();
+    </script>
+  </body>
+</html>

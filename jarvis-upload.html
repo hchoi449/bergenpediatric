@@ -1,0 +1,1119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Jarvis Upload - ThinkBigPrep</title>
+    <meta name="description" content="Upload worksheets to build a custom study guide in Jarvis." />
+    <link rel="shortcut icon" href="assets/logo/thinkbigprep-icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/index.css?v=1.1" />
+    <link rel="stylesheet" href="css/login.css?v=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+    <style>
+      :root{
+        --tbp-bg:#f9f5ef;
+        --tbp-panel:#ffffff;
+        --tbp-border:rgba(139,69,19,0.18);
+        --tbp-border-strong:rgba(139,69,19,0.26);
+        --tbp-accent:#8B4513;
+        --tbp-accent-light:rgba(139,69,19,0.08);
+        --tbp-text:#3f2a11;
+        --tbp-muted:#6b5b4c;
+        --tbp-muted-light:#8c7b6c;
+        --tbp-sky:#38bdf8;
+      }
+      body.upload-body{
+        background:linear-gradient(135deg, #f5f0e8 0%, #efe5da 45%, #e5d3c1 100%);
+        min-height:100vh;
+      }
+      .upload-shell{
+        max-width:1180px;
+        margin:120px auto 84px;
+        padding:0 26px;
+        display:flex;
+        flex-direction:column;
+        gap:32px;
+      }
+      #jarvisApp{
+        display:flex;
+        flex-direction:column;
+        gap:32px;
+      }
+      .jarvis-nav{
+        display:flex;
+        align-items:center;
+        gap:22px;
+        padding:22px 26px;
+        background:rgba(255,255,255,0.94);
+        border-radius:44px;
+        border:1px solid rgba(139,69,19,0.22);
+        box-shadow:0 36px 80px -28px rgba(90,56,28,0.45);
+        backdrop-filter:blur(18px);
+      }
+      .jarvis-nav a{
+        flex:1;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        gap:16px;
+        padding:24px 34px;
+        border-radius:32px;
+        font-weight:700;
+        font-size:1.15rem;
+        color:#351f0a;
+        text-decoration:none;
+        transition:all .2s ease;
+      }
+      .jarvis-nav a:hover,
+      .jarvis-nav a:focus-visible{
+        background:rgba(139,69,19,0.08);
+        outline:none;
+      }
+      .jarvis-nav a[aria-current="page"]{
+        background:linear-gradient(135deg, #8B4513 0%, #b26d2f 100%);
+        color:#fff;
+        box-shadow:0 24px 40px -26px rgba(139,69,19,0.55);
+      }
+      .upload-header-card{
+        background:linear-gradient(135deg, rgba(255,255,255,0.96), rgba(255,255,255,0.84));
+        border-radius:28px;
+        padding:34px 38px;
+        border:1px solid rgba(139,69,19,0.14);
+        box-shadow:0 30px 60px -40px rgba(139,69,19,0.45);
+        backdrop-filter:blur(20px);
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+      }
+      .upload-header-card h1{
+        margin:0;
+        font-size:2.35rem;
+        font-weight:800;
+        color:var(--tbp-text);
+      }
+      .upload-header-card p{
+        margin:0;
+        font-size:1.05rem;
+        color:var(--tbp-muted);
+        max-width:720px;
+      }
+      .upload-layout{
+        display:grid;
+        grid-template-columns:380px 1fr;
+        gap:28px;
+        align-items:start;
+      }
+      .upload-panel{
+        background:var(--tbp-panel);
+        border-radius:24px;
+        border:1px solid rgba(139,69,19,0.12);
+        box-shadow:0 30px 60px -36px rgba(139,69,19,0.38);
+        padding:30px;
+        display:flex;
+        flex-direction:column;
+        gap:22px;
+      }
+      .upload-panel h2{
+        margin:0;
+        font-size:1.3rem;
+        font-weight:700;
+        color:var(--tbp-text);
+      }
+      .info-grid{
+        display:grid;
+        gap:20px;
+      }
+      .info-grid.two-col{
+        grid-template-columns:1fr;
+      }
+      .upload-field{
+        display:flex;
+        flex-direction:column;
+        gap:6px;
+      }
+      .upload-field label{
+        font-weight:600;
+        color:var(--tbp-text);
+        font-size:0.95rem;
+        letter-spacing:.01em;
+      }
+      .upload-control{
+        width:100%;
+        height:52px;
+        padding:0 16px;
+        border-radius:14px;
+        border:1px solid var(--tbp-border);
+        background:#fff;
+        font-size:1rem;
+        color:#1f2937;
+        box-sizing:border-box;
+        line-height:52px;
+        transition:border-color .2s ease, box-shadow .2s ease;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        appearance:none;
+      }
+      .upload-control:disabled{
+        background:#f1f5f9;
+        color:#475569;
+      }
+      .upload-control:focus{
+        outline:none;
+        border-color:var(--tbp-accent);
+        box-shadow:0 0 0 4px rgba(139,69,19,0.14);
+      }
+      .field-hint{
+        font-size:0.8rem;
+        color:#667085;
+        margin:4px 0 0;
+      }
+      .upload-summary{
+        display:flex;
+        flex-direction:column;
+        gap:22px;
+        min-height:420px;
+      }
+      .upload-dropzone{
+        position:relative;
+        border:2px dashed rgba(139,69,19,0.28);
+        border-radius:20px;
+        padding:50px 32px;
+        background:linear-gradient(145deg, rgba(139,69,19,0.08), rgba(139,69,19,0.02));
+        text-align:center;
+        overflow:hidden;
+        transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+      }
+      .upload-dropzone:hover{
+        border-color:rgba(139,69,19,0.48);
+        box-shadow:0 28px 60px -44px rgba(139,69,19,0.5);
+        transform:translateY(-2px);
+      }
+      .upload-dropzone::after{
+        content:'';
+        position:absolute;
+        top:18%;
+        left:50%;
+        width:190px;
+        height:135px;
+        background:rgba(139,69,19,0.1);
+        border:2px solid rgba(139,69,19,0.35);
+        border-radius:18px;
+        transform:translate(-50%, -160%) rotate(-6deg);
+        opacity:0;
+        pointer-events:none;
+      }
+      .upload-dropzone.is-dragover::after{
+        animation:float-file .85s ease forwards;
+      }
+      @keyframes float-file{
+        0%{ opacity:0; transform:translate(-50%, -200%) rotate(-12deg); }
+        50%{ opacity:1; transform:translate(-50%, -40%) rotate(4deg); }
+        100%{ opacity:0; transform:translate(-50%, 50%) rotate(0deg); }
+      }
+      .dropzone-icon{
+        height:68px;
+        width:68px;
+        border-radius:18px;
+        background:#fff;
+        color:#6b7280;
+        box-shadow:0 1px 4px rgba(0,0,0,0.08);
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        margin-bottom:12px;
+      }
+      .dropzone-title{
+        margin:4px 0 0;
+        font-size:1.15rem;
+        font-weight:700;
+        color:#1f2937;
+      }
+      .dropzone-sub{
+        margin:4px 0 12px;
+        color:#6b7280;
+        font-size:0.95rem;
+      }
+      .dropzone-cta{
+        border:2px dashed rgba(148,163,184,0.35);
+        border-radius:16px;
+        padding:18px 16px;
+        background:#fff;
+        margin-top:20px;
+      }
+      .upload-actions{
+        display:flex;
+        gap:12px;
+        justify-content:flex-end;
+        align-items:center;
+      }
+      .btn{
+        border:none;
+        border-radius:12px;
+        padding:12px 20px;
+        font-weight:600;
+        font-size:0.95rem;
+        cursor:pointer;
+        transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+      }
+      .btn-secondary{
+        background:linear-gradient(135deg, rgba(139,69,19,0.12), rgba(139,69,19,0.06));
+        border:1px solid var(--tbp-border);
+        color:var(--tbp-text);
+      }
+      .btn-secondary:hover{
+        transform:translateY(-1px);
+        box-shadow:0 20px 45px -30px rgba(139,69,19,0.48);
+        background:linear-gradient(135deg, rgba(139,69,19,0.16), rgba(139,69,19,0.08));
+      }
+      .btn-primary{
+        background:linear-gradient(135deg, #8B4513 0%, #b2682f 100%);
+        color:#fff;
+        box-shadow:0 30px 60px -36px rgba(139,69,19,0.55);
+      }
+      .btn-primary:disabled{
+        background:rgba(139,69,19,0.35);
+        cursor:not-allowed;
+        box-shadow:none;
+      }
+      .btn-primary:not(:disabled):hover{
+        transform:translateY(-1px);
+        box-shadow:0 30px 60px -34px rgba(139,69,19,0.52);
+      }
+      .file-list-card{
+        background:#fff;
+        border-radius:20px;
+        border:1px solid rgba(139,69,19,0.14);
+        padding:24px;
+        display:flex;
+        flex-direction:column;
+        gap:18px;
+        min-height:270px;
+      }
+      .file-list-head{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:18px;
+      }
+      .file-list-head p{
+        margin:0;
+        font-weight:600;
+        color:#334155;
+      }
+      .file-list-empty{
+        flex:1;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        border-radius:16px;
+        background:rgba(148,163,184,0.12);
+        color:#64748b;
+        font-size:0.95rem;
+      }
+      .file-list-items{
+        flex:1;
+        display:flex;
+        flex-direction:column;
+        gap:0;
+        max-height:210px;
+        overflow:auto;
+        scrollbar-gutter:stable both-edges;
+      }
+      .file-row{
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        gap:16px;
+        padding:12px 0;
+        border-top:1px solid rgba(241,245,249,0.9);
+      }
+      .file-row:first-child{ border-top:none; }
+      .file-meta{
+        display:flex;
+        gap:12px;
+        align-items:center;
+        flex:1;
+        min-width:0;
+      }
+      .file-badge{
+        height:34px;
+        width:34px;
+        border-radius:11px;
+        background:#f1f5f9;
+        color:#475569;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        font-weight:600;
+      }
+      .file-name{
+        margin:0;
+        font-weight:600;
+        color:#1f2937;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+      }
+      .file-size{
+        margin:2px 0 0;
+        font-size:0.8rem;
+        color:#64748b;
+      }
+      .file-progress{
+        margin-top:8px;
+      }
+      .file-progress-bar{
+        height:8px;
+        border-radius:9999px;
+        background:#f1f5f9;
+        overflow:hidden;
+      }
+      .file-progress-bar span{
+        display:block;
+        height:100%;
+        border-radius:9999px;
+        background:linear-gradient(135deg, #38bdf8, #0ea5e9);
+        transition:width .25s ease;
+      }
+      .file-progress-text{
+        margin-top:4px;
+        font-size:0.75rem;
+        color:#64748b;
+      }
+      @media(max-width:1080px){
+        .upload-layout{ grid-template-columns:1fr; }
+      }
+      @media(max-width:720px){
+        .jarvis-nav{
+          flex-direction:column;
+          align-items:stretch;
+        }
+        .jarvis-nav a{ width:100%; }
+        .upload-shell{ padding:0 18px; }
+      }
+    </style>
+  </head>
+  <body class="upload-body">
+    <header class="header">
+      <div class="header-container">
+        <a href="index.html#home" class="logo" aria-label="ThinkBigPrep Logo" style="text-decoration:none;color:inherit;">
+          <img src="./assets/logo/thinkbigprep-logo.svg" alt="ThinkBigPrep" style="height:48px;width:auto;" />
+        </a>
+        <nav class="nav-desktop">
+          <a href="index.html#home">Home</a>
+          <a href="timetable.html">Timetable</a>
+          <a href="index.html#courses">Plans</a>
+          <a href="index.html#coaches">Available Tutors</a>
+          <a href="about.html">About Us</a>
+          <a href="jarvis.html">Jarvis</a>
+          <a href="ai-curriculum.html">AI Curriculum</a>
+          <a href="problem-sets.html">Think Lab <span class="new-tag">NEW</span></a>
+          <a href="login.html" class="student-login-link">Student Login</a>
+        </nav>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="bi bi-list"></i></button>
+      </div>
+      <nav class="nav-mobile" id="mobile-menu">
+        <a href="index.html#home">Home</a>
+        <a href="timetable.html">Timetable</a>
+        <a href="index.html#courses">Plans</a>
+        <a href="index.html#coaches">Available Tutors</a>
+        <a href="about.html">About Us</a>
+        <a href="jarvis.html">Jarvis</a>
+        <a href="ai-curriculum.html">AI Curriculum</a>
+        <a href="problem-sets.html">Think Lab <span class="new-tag">NEW</span></a>
+      </nav>
+    </header>
+
+    <main class="upload-shell">
+      <div id="jarvisApp">
+        <nav class="jarvis-nav" aria-label="Jarvis navigation">
+          <a href="jarvis.html">
+            <i class="bi bi-stars" aria-hidden="true"></i>
+            <span>Study Guides</span>
+          </a>
+          <a href="jarvis-upload.html" aria-current="page">
+            <i class="bi bi-cloud-arrow-up" aria-hidden="true"></i>
+            <span>Upload Worksheets</span>
+          </a>
+        </nav>
+
+        <section class="upload-header-card">
+          <h1>Upload Your Worksheets</h1>
+          <p>Drop your files, fill in the details, and Jarvis will turn them into tailored practice sets. You’ll see progress for each file and can add custom exam names if needed.</p>
+        </section>
+
+        <section class="upload-layout" aria-labelledby="uploadTitle">
+          <div class="upload-panel">
+            <h2>Worksheet Details</h2>
+            <div class="info-grid two-col">
+              <div class="upload-field">
+                <label for="schoolInput">School</label>
+                <select id="schoolInput" class="upload-control">
+                  <option value="">Select school</option>
+                </select>
+              </div>
+              <div class="upload-field">
+                <label for="courseSelect">Course</label>
+                <select id="courseSelect" class="upload-control">
+                  <option value="">Select course</option>
+                  <option>Pre-Algebra</option>
+                  <option>Geometry</option>
+                  <option>Algebra I</option>
+                  <option>Algebra II</option>
+                  <option>Pre-Calculus</option>
+                  <option>Calculus AB</option>
+                  <option>Calculus BC</option>
+                </select>
+              </div>
+              <div class="upload-field">
+                <label for="teacherInput">Teacher</label>
+                <input id="teacherInput" type="text" placeholder="ex. Mrs. Smith" autocomplete="off" class="upload-control" />
+              </div>
+              <div class="upload-field">
+                <label for="examInput">Exams / Quizzes</label>
+                <input id="examInput" list="examOptions" placeholder="Loading exams…" autocomplete="off" class="upload-control" disabled />
+                <datalist id="examOptions"></datalist>
+                <p class="field-hint">Choose an upcoming exam or type a custom title.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="upload-summary">
+            <div class="upload-dropzone" id="tbp-dropzone">
+              <div class="dropzone-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden style="height:28px;width:28px;">
+                  <path d="M19.35 10.04a7.49 7.49 0 0 0-14-2.09A5.5 5.5 0 0 0 6.5 21H18a4.5 4.5 0 0 0 1.35-10.96ZM12 13a1 1 0 0 1 1 1v3.586l.293-.293a1 1 0 1 1 1.414 1.414l-2.707 2.707a1 1 0 0 1-1.414 0L7.879 18.707a1 1 0 0 1 1.414-1.414L9.586 17V14a1 1 0 0 1 1-1h1.414Z"/>
+                </svg>
+              </div>
+              <h3 class="dropzone-title">Upload files</h3>
+              <p class="dropzone-sub">PDF, PNG, or JPG – up to 50MB each. Drag and drop or browse.</p>
+              <div class="dropzone-cta">
+                <p style="font-weight:600;color:#1f2937;margin:0;">Select files or drop them here</p>
+                <p style="margin:4px 0 10px;color:#6b7280;font-size:0.9rem;">You can add up to five files per batch</p>
+                <button id="tbp-browse" type="button" class="btn btn-primary">Browse files</button>
+              </div>
+              <input id="tbp-file-input" type="file" multiple accept="image/jpeg,image/png,application/pdf" style="display:none" />
+            </div>
+
+            <div id="tbp-file-list" class="file-list-card" style="visibility:hidden;">
+              <div class="file-list-head">
+                <p id="tbp-file-count">0 files selected</p>
+                <div class="upload-actions">
+                  <button id="tbp-clear" type="button" class="btn btn-secondary">Clear</button>
+                  <button id="tbp-upload" type="button" class="btn btn-primary" disabled>Upload</button>
+                </div>
+              </div>
+              <div id="tbp-rows" class="file-list-items">
+                <div class="file-list-empty">Your selected files will appear here</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div id="jarvisLoading" style="display:none;position:fixed;inset:0;background:rgba(255,255,255,0.92);backdrop-filter:saturate(140%) blur(2px);z-index:50;align-items:center;justify-content:center;">
+      <div style="text-align:center;">
+        <div class="tbp-star-spinner" aria-label="Loading" style="margin:0 auto 12px;"></div>
+        <div style="font-size:20px;font-weight:800;color:#6b3410;">Custom made Study Guide loading....</div>
+        <div id="jarvisEta" style="margin-top:6px;color:#6b7280;font-weight:600;">Estimated wait ~ 00:00</div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-logo"><img src="./assets/logo/thinkbigprep-logo.svg" alt="ThinkBigPrep" /><span>ThinkBigPrep</span></div>
+          </div>
+          <div class="footer-section">
+            <h4>SEE ALSO</h4>
+            <ul>
+              <li><a href="index.html#home">Home</a></li>
+              <li><a href="timetable.html">Timetable</a></li>
+              <li><a href="ai-curriculum.html">AI Curriculum</a></li>
+              <li><a href="problem-sets.html">Think Lab</a></li>
+            </ul>
+          </div>
+          <div class="footer-section"><h4>CONTACT US</h4><p>Phone: 201-665-0123</p><p>Email: info@thinkbigprep.com</p></div>
+        </div>
+        <div class="footer-bottom"><p>ThinkBigPrep © 2025</p></div>
+      </div>
+    </footer>
+
+    <script src="index.js"></script>
+    <script src="login.js?v=1.0"></script>
+    <script>
+      (function(){
+        const examInput = document.getElementById('examInput');
+        const examOptionsList = document.getElementById('examOptions');
+        if (!examInput || !examOptionsList) return;
+        const examEventMap = new Map();
+        let loaded = false;
+        let loading = false;
+
+        examInput.addEventListener('input', function(){
+          const value = (examInput.value || '').trim();
+          const record = value ? examEventMap.get(value.toLowerCase()) : null;
+          examInput.dataset.examDate = record ? record.date || '' : '';
+        });
+
+        function setPlaceholder(message, opts){
+          opts = opts || {};
+          examInput.placeholder = message;
+          if (typeof opts.disabled !== 'undefined'){
+            examInput.disabled = !!opts.disabled;
+            if (examInput.disabled) examInput.value = '';
+          }
+          examInput.dataset.examDate = '';
+        }
+
+        function decodeIcsText(text){ return String(text || '').replace(/\\n/g, '\n').replace(/\\,/g, ',').replace(/\\;/g, ';'); }
+        function icsToDate(raw){
+          if (!raw) return null;
+          if (/^\d{8}$/.test(raw)){
+            const y = Number(raw.slice(0,4));
+            const m = Number(raw.slice(4,6));
+            const d = Number(raw.slice(6,8));
+            return new Date(Date.UTC(y, m-1, d, 12, 0, 0));
+          }
+          if (/^\d{8}T\d{6}Z$/.test(raw)){
+            const y = Number(raw.slice(0,4));
+            const m = Number(raw.slice(4,6));
+            const d = Number(raw.slice(6,8));
+            const hh = Number(raw.slice(9,11));
+            const mm = Number(raw.slice(11,13));
+            const ss = Number(raw.slice(13,15));
+            return new Date(Date.UTC(y, m-1, d, hh, mm, ss));
+          }
+          const dt = new Date(raw);
+          return isNaN(dt.getTime()) ? null : dt;
+        }
+        function parseIcs(text){
+          const events = [];
+          if (!text) return events;
+          const lines = text.split(/\r?\n/);
+          const unfolded = [];
+          for (let i=0;i<lines.length;i++){
+            const line = lines[i];
+            if (/^\s/.test(line) && unfolded.length){
+              unfolded[unfolded.length - 1] += line.trim();
+            } else {
+              unfolded.push(line);
+            }
+          }
+          let current = null;
+          for (const raw of unfolded){
+            const line = raw.trim();
+            if (line === 'BEGIN:VEVENT'){ current = {}; continue; }
+            if (line === 'END:VEVENT'){
+              if (current){ events.push(current); current = null; }
+              continue;
+            }
+            if (!current) continue;
+            const idx = line.indexOf(':');
+            if (idx < 0) continue;
+            const keyPart = line.slice(0, idx);
+            const value = decodeIcsText(line.slice(idx+1));
+            const key = keyPart.split(';')[0];
+            current[key] = value;
+          }
+          return events.map(ev => {
+            const start = icsToDate(ev.DTSTART || ev['DTSTART;VALUE=DATE']);
+            const title = (ev.SUMMARY || '').trim();
+            return { raw: ev, start, title };
+          }).filter(ev => ev.start && ev.title);
+        }
+        function isAssessmentEvent(ev){
+          if (!ev || !ev.title) return false;
+          const text = ev.title.toLowerCase();
+          return /\b(exam|test|assessment|quiz)\b/.test(text);
+        }
+        function dedupeEvents(events){
+          const seen = new Map();
+          events.forEach(ev => {
+            const key = `${ev.title.toLowerCase()}|${ev.start ? ev.start.toISOString().slice(0,10) : ''}`;
+            if (!seen.has(key)) seen.set(key, ev);
+          });
+          return Array.from(seen.values());
+        }
+        function formatExamLabel(ev){
+          if (!ev || !ev.start) return (ev && ev.title) || 'Exam';
+          const formatter = new Intl.DateTimeFormat('en-US', { month:'short', day:'numeric' });
+          const title = (ev.title || '').trim();
+          return `${formatter.format(ev.start)} — ${title}`;
+        }
+
+        async function loadExamOptions(){
+          if (loading || loaded) return;
+          loading = true;
+          setPlaceholder('Loading exams…', { disabled: true });
+          examOptionsList.innerHTML = '';
+          examEventMap.clear();
+          try {
+            let token = null;
+            try { token = localStorage.getItem('tbp_token'); } catch {}
+            if (!token){
+              setPlaceholder('Please log in to access exams.', { disabled: true });
+              loading = false;
+              return;
+            }
+            const base = (window.TBP_AUTH_BASE || '').replace(/\/$/, '');
+            const profileRes = await fetch(`${base}/auth/profile`, { headers: { 'Authorization': `Bearer ${token}` } });
+            const profileJson = await profileRes.json().catch(() => ({}));
+            const profile = profileRes.ok && profileJson && profileJson.profile ? profileJson.profile : null;
+            const icsUrl = profile && profile.icsUrl ? String(profile.icsUrl).trim() : '';
+            if (!icsUrl){
+              setPlaceholder('Add an iCal URL in settings or type a custom exam.', { disabled: false });
+              examInput.disabled = false;
+              loaded = true;
+              loading = false;
+              return;
+            }
+            const icsRes = await fetch(`${base}/auth/ics?url=${encodeURIComponent(icsUrl)}`, { headers: { 'Authorization': `Bearer ${token}` } });
+            if (!icsRes.ok) throw new Error('ics_fetch_failed');
+            const icsText = await icsRes.text();
+            const allAssessments = parseIcs(icsText).filter(isAssessmentEvent);
+            const today = new Date(); today.setHours(0,0,0,0);
+            const upcoming = allAssessments.filter(ev => ev.start && ev.start >= today);
+            const events = dedupeEvents(upcoming);
+            if (!events.length){
+              setPlaceholder('No upcoming exams found. Enter a custom name.', { disabled: false });
+              examInput.disabled = false;
+              loaded = true;
+              loading = false;
+              return;
+            }
+            examOptionsList.innerHTML = '';
+            examEventMap.clear();
+            events.forEach(ev => {
+              const label = formatExamLabel(ev);
+              const option = document.createElement('option');
+              option.value = label;
+              examOptionsList.appendChild(option);
+              examEventMap.set(label.toLowerCase(), {
+                date: ev.start ? ev.start.toISOString() : '',
+                raw: ev
+              });
+            });
+            examInput.disabled = false;
+            examInput.placeholder = 'Select or type exam name…';
+            examInput.dataset.examDate = '';
+            loaded = true;
+          } catch (err){
+            console.warn('Failed to load exam options', err);
+            setPlaceholder('Unable to load exams. Type a custom name.', { disabled: false });
+            examInput.disabled = false;
+            loaded = true;
+          } finally {
+            loading = false;
+          }
+        }
+
+        window.addEventListener('tbp:jarvis:authenticated', loadExamOptions);
+        window.addEventListener('tbp:jarvis:unauthenticated', function(){
+          loaded = false;
+          setPlaceholder('Please log in to access exams.', { disabled: true });
+        });
+
+        loadExamOptions();
+        window.__jarvisExamField = {
+          input: examInput,
+          getValue(){
+            const title = (examInput.value || '').trim();
+            const record = title ? examEventMap.get(title.toLowerCase()) : null;
+            return {
+              title,
+              date: record ? record.date || '' : ''
+            };
+          }
+        };
+      })();
+    </script>
+    <script>
+      (function(){
+        const ACCEPT = ['image/jpeg','image/png','application/pdf'];
+        const MAX_MB = 50; const MAX_BYTES = MAX_MB * 1024 * 1024;
+        const MAX_FILES = 5;
+        const els = {
+          drop: document.getElementById('tbp-dropzone'),
+          browse: document.getElementById('tbp-browse'),
+          input: document.getElementById('tbp-file-input'),
+          list: document.getElementById('tbp-file-list'),
+          count: document.getElementById('tbp-file-count'),
+          clear: document.getElementById('tbp-clear'),
+          upload: document.getElementById('tbp-upload'),
+          rows: document.getElementById('tbp-rows')
+        };
+        const overlay = document.getElementById('jarvisLoading');
+        const overlayEta = document.getElementById('jarvisEta');
+        let items = [];
+        let currentSlug = '';
+
+        function fmtBytes(bytes){
+          if (bytes===0) return '0 B';
+          const k=1024;
+          const sizes=['B','KB','MB','GB'];
+          const i=Math.floor(Math.log(bytes)/Math.log(k));
+          return `${(bytes/Math.pow(k,i)).toFixed(i===0?0:2)} ${sizes[i]}`;
+        }
+        function setDragging(on){
+          if (!els.drop) return;
+          els.drop.style.background = on ? '#eff6ff' : '#f8fafb';
+          if (on) els.drop.classList.add('is-dragover');
+          else els.drop.classList.remove('is-dragover');
+        }
+        function dedupeKey(f){ return f.name + '|' + f.size; }
+
+        function render(){
+          if (els.list){
+            els.list.style.visibility = items.length ? 'visible' : 'hidden';
+            els.list.style.pointerEvents = items.length ? 'auto' : 'none';
+          }
+          if (items.length === 0 && els.rows){
+            els.rows.innerHTML = '<div class="file-list-empty">Your selected files will appear here</div>';
+          }
+          els.count.textContent = `${items.length} file${items.length>1?'s':''} selected`;
+          els.upload.disabled = !items.some(x => x.status==='ready');
+          if (!els.rows) return;
+          if (!items.length) return;
+          els.rows.innerHTML = items.map(it => {
+            const badge = it.file.type.includes('pdf')? 'PDF' : (it.file.type.includes('png')?'PNG':'JPG');
+            const barColor = it.status==='error'? '#ef4444' : '#0ea5e9';
+            const showBar = it.status !== 'ready';
+            return `
+              <div class="file-row">
+                <div class="file-meta">
+                  <span class="file-badge">${badge}</span>
+                  <div class="min-w-0">
+                    <p class="file-name">${it.file.name}</p>
+                    <p class="file-size">${fmtBytes(it.file.size)}</p>
+                    ${showBar?`
+                      <div class="file-progress">
+                        <div class="file-progress-bar"><span style="width:${it.progress||0}%;"></span></div>
+                        <p class="file-progress-text">
+                          ${it.status==='uploading'?`Uploading… ${Math.round(it.progress||0)}%`
+                            : it.status==='done' ? 'Uploaded'
+                            : it.status==='error' ? (it.error || 'Upload failed')
+                            : 'Ready'}
+                        </p>
+                      </div>
+                    `:''}
+                  </div>
+                </div>
+                <button type="button" data-id="${it.id}" class="btn btn-secondary" style="padding:8px 14px;font-size:0.85rem;">Remove</button>
+              </div>
+            `;
+          }).join('');
+          els.rows.querySelectorAll('button[data-id]').forEach(btn => {
+            btn.addEventListener('click', function(){
+              const id = this.getAttribute('data-id');
+              items = items.filter(x => x.id !== id);
+              render();
+            });
+          });
+        }
+
+        function addFiles(fileList){
+          if (!fileList) return;
+          if (items.length >= MAX_FILES){
+            alert(`You can upload up to ${MAX_FILES} files.`);
+            return;
+          }
+          Array.from(fileList).forEach(file => {
+            if (!ACCEPT.includes(file.type) && !/\.pdf$/i.test(file.name) && !/\.png$/i.test(file.name) && !/\.jpe?g$/i.test(file.name)){
+              return;
+            }
+            if (file.size > MAX_BYTES){
+              alert(`${file.name} is larger than ${MAX_MB}MB.`);
+              return;
+            }
+            const key = dedupeKey(file);
+            if (items.some(it => it.key === key)) return;
+            items.push({
+              id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+              key,
+              file,
+              progress:0,
+              status:'ready'
+            });
+          });
+          render();
+        }
+
+        if (els.drop){
+          els.drop.addEventListener('dragover', function(e){ e.preventDefault(); setDragging(true); });
+          els.drop.addEventListener('dragleave', function(e){ e.preventDefault(); setDragging(false); });
+          els.drop.addEventListener('drop', function(e){ e.preventDefault(); setDragging(false); addFiles(e.dataTransfer.files); });
+          els.drop.addEventListener('click', function(){ els.input?.click(); });
+        }
+        if (els.browse) els.browse.addEventListener('click', () => els.input?.click());
+        if (els.input) els.input.addEventListener('change', function(){ addFiles(this.files); this.value = ''; });
+        if (els.clear) els.clear.addEventListener('click', function(){ items = []; render(); });
+
+        function loadStoredGuides(){
+          try {
+            const raw = localStorage.getItem('jarvisGuides');
+            const arr = raw ? JSON.parse(raw) : [];
+            return Array.isArray(arr) ? arr.filter(g => g && g.slug) : [];
+          } catch {
+            return [];
+          }
+        }
+
+        function saveGuideMetadata(meta){
+          try {
+            const guides = loadStoredGuides();
+            guides.unshift({ slug: meta.slug, title: meta.title, examDate: meta.examDate||'', createdAt: new Date().toISOString() });
+            const trimmed = guides.slice(0, 25);
+            localStorage.setItem('jarvisGuides', JSON.stringify(trimmed));
+            localStorage.setItem('jarvisLatestGuide', meta.slug);
+          } catch {}
+        }
+
+        function ensureSlug(){
+          if (!currentSlug) currentSlug = `jarvis-${Date.now()}`;
+          return currentSlug;
+        }
+        ensureSlug();
+
+        function getStoredUser(){
+          try {
+            const raw = localStorage.getItem('tbp_user');
+            if (!raw) return null;
+            const user = JSON.parse(raw);
+            return user;
+          } catch {
+            return null;
+          }
+        }
+
+        function runWorksheetPipeline(opts){
+          const { fileUrl, images, meta } = opts || {};
+          if (!fileUrl || !Array.isArray(images) || !images.length) return Promise.resolve({ processed:false, extracted:false });
+          const base = (window.TBP_AUTH_BASE||'').replace(/\/$/, '');
+          return fetch(`${base}/ai/worksheet/process`, {
+            method:'POST',
+            headers:{ 'Content-Type':'application/json' },
+            body: JSON.stringify({
+              url: fileUrl,
+              lessonSlug: meta.slug,
+              lessonTitle: meta.course || meta.guideTitle || meta.slug
+            })
+          }).then(r=>r.json()).then(resp => {
+            if (!resp || !resp.ok){
+              return { processed:false, extracted:false, error:'preprocess_failed' };
+            }
+            return fetch(`${base}/ai/worksheet/extract`, {
+              method:'POST',
+              headers:{ 'Content-Type':'application/json' },
+              body: JSON.stringify({
+                lessonSlug: meta.slug,
+                title: meta.guideTitle,
+                school: meta.school,
+                teacher: meta.teacher,
+                worksheetType: meta.course,
+                studentFullName: meta.studentFullName,
+                studentEmail: meta.studentEmail,
+                examTitle: meta.examTitle,
+                examDate: meta.examDate,
+                images: images
+              })
+            }).then(ex=>ex.json()).then(ex=>{
+              if (!ex || !ex.ok){
+                return { processed:true, extracted:false, error:'extract_failed' };
+              }
+              return { processed:true, extracted:true };
+            });
+          }).catch(err => {
+            console.error('pipeline error', err);
+            return { processed:false, extracted:false, error:String(err&&err.message||err) };
+          });
+        }
+
+        els.upload.addEventListener('click', async function(){
+          if (!items.length){
+            alert('Please add at least one file before uploading.');
+            return;
+          }
+          const slug = ensureSlug();
+          const school = (document.getElementById('schoolInput').value||'').trim();
+          const course = (document.getElementById('courseSelect').value||'').trim();
+          const teacher = (document.getElementById('teacherInput').value||'').trim();
+          const examState = window.__jarvisExamField ? window.__jarvisExamField.getValue() : { title:'', date:'' };
+          const examTitle = examState.title || '';
+          const examDate = examState.date || '';
+          const guideTitle = examTitle || (course ? `${course} Study Guide` : slug);
+          const storedUser = getStoredUser();
+          const pipelineMeta = {
+            slug,
+            school,
+            course,
+            teacher,
+            examTitle,
+            examDate,
+            guideTitle,
+            worksheetType: course || '',
+            studentFullName: ((storedUser && (storedUser.fullName || storedUser.name)) || '').trim(),
+            studentEmail: ((storedUser && storedUser.email) || '').trim()
+          };
+
+          try { overlay.style.display='flex'; } catch{}
+          const totalToProcess = items.filter(it => it.status==='ready').length || items.length || 1;
+          const PER_FILE_SEC = 20;
+          function fmt(s){ s=Math.max(0,Math.ceil(s)); const m=Math.floor(s/60); const r=s%60; return `${String(m).padStart(2,'0')}:${String(r).padStart(2,'0')}`; }
+          let timer = null;
+          const tick = ()=>{
+            const done = items.filter(it => it.status==='done').length;
+            const remaining = Math.max(0, totalToProcess - done);
+            const target = Math.max(5, remaining * PER_FILE_SEC);
+            try { overlayEta.textContent = `Estimated wait ~ ${fmt(target)}`; } catch{}
+          };
+          try { tick(); timer = setInterval(tick, 1000); } catch{}
+
+          const pipelineTasks = [];
+          const pipelineErrors = [];
+          items = items.map(it => it.status==='ready'? { ...it, status:'uploading', progress:5 } : it);
+          render();
+
+          for (const it of items){
+            if (it.status !== 'uploading') continue;
+            try {
+              await new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', (window.TBP_AUTH_BASE||'') + '/ai/worksheet/upload');
+                xhr.upload.onprogress = (e) => {
+                  if (!e.lengthComputable) return;
+                  const p = Math.round((e.loaded / e.total) * 100);
+                  it.progress = p; render();
+                };
+                xhr.onreadystatechange = function(){
+                  if (xhr.readyState === 4){
+                    try {
+                      const j = JSON.parse(xhr.responseText||'{}');
+                      if (xhr.status>=200 && xhr.status<300 && j && j.ok){
+                        const fileUrl = j.url || '';
+                        const doPre = fileUrl ? fetch((window.TBP_AUTH_BASE||'') + '/ai/worksheet/preprocess', {
+                          method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ url: fileUrl, dpi: 300 })
+                        }).then(r=>r.json()).catch(()=>({})): Promise.resolve({});
+                        const schedulePipeline = (pp)=>{
+                          if (!fileUrl) return;
+                          const imgs = pp && Array.isArray(pp.images) ? pp.images : [];
+                          if (imgs.length){
+                            pipelineTasks.push(runWorksheetPipeline({ fileUrl, images: imgs, meta: pipelineMeta }));
+                          } else {
+                            pipelineErrors.push({ id: it.id, error: 'no_preprocess_images' });
+                          }
+                        };
+                        doPre.then(pp=>{
+                          it.status='done';
+                          it.progress=100;
+                          if (pp && pp.images) it.pngs = pp.images;
+                          render();
+                          schedulePipeline(pp);
+                          resolve(null);
+                        }).catch(()=>{
+                          it.status='done';
+                          it.progress=100;
+                          render();
+                          schedulePipeline(null);
+                          resolve(null);
+                        });
+                      } else {
+                        it.status='error';
+                        it.error=(j&&j.error)||('Upload failed '+xhr.status);
+                        render();
+                        reject(new Error(it.error));
+                      }
+                    } catch(e){
+                      it.status='error';
+                      it.error='Invalid server response';
+                      render();
+                      reject(e);
+                    }
+                  }
+                };
+                const form = new FormData();
+                form.append('lessonSlug', slug);
+                form.append('file', it.file, it.file.name);
+                if (school) form.append('school', school);
+                if (course) form.append('course', course);
+                if (teacher) form.append('teacher', teacher);
+                xhr.send(form);
+              });
+            } catch { /* already marked */ }
+          }
+
+          try { if (timer) clearInterval(timer); } catch{}
+
+          let pipelineResults = [];
+          if (pipelineTasks.length){
+            try { overlayEta.textContent = 'Generating problems…'; } catch{}
+            pipelineResults = await Promise.all(pipelineTasks.map(p => p.catch(() => ({ processed:false, extracted:false }))));
+          }
+
+          try { overlay.style.display='none'; } catch{}
+
+          const allFinished = pipelineTasks.length && pipelineResults.length === pipelineTasks.length;
+          pipelineResults.forEach(res => {
+            if (!res || !res.processed || !res.extracted){
+              pipelineErrors.push(res);
+            }
+          });
+          const allSucceeded = allFinished && pipelineErrors.length === 0;
+          if (!pipelineTasks.length || !allFinished){
+            alert('Upload completed but the extraction pipeline did not finish. Please retry.');
+            return;
+          }
+          if (!allSucceeded){
+            console.warn('Worksheet pipeline errors', pipelineErrors);
+            const sampleErr = pipelineErrors.find(e => e && e.error && typeof e.error === 'string');
+            const detail = sampleErr ? ` (detail: ${sampleErr.error})` : '';
+            alert(`Some worksheets were uploaded, but extraction did not fully complete${detail}. Please retry before continuing.`);
+            return;
+          }
+
+          saveGuideMetadata({
+            slug,
+            title: guideTitle,
+            examDate,
+            course,
+            school,
+            teacher,
+            createdAt: new Date().toISOString()
+          });
+          window.location.href = `jarvis.html?guide=${encodeURIComponent(slug)}`;
+        });
+
+        function populateSchoolSelect(){
+          const select = document.getElementById('schoolInput');
+          if (!select) return;
+          const schools = (window && window.TBP_SCHOOLS) ? window.TBP_SCHOOLS : [];
+          if (!schools.length){
+            select.innerHTML = '<option value="">Select school</option>';
+            return;
+          }
+          const stored = getStoredUser();
+          const preferred = stored && stored.school ? stored.school : '';
+          select.innerHTML = '<option value="">Select school</option>' + schools.map(name => `<option${preferred===name?' selected':''}>${name}</option>`).join('');
+          select.addEventListener('change', () => { saveSchoolProfile(select.value); });
+        }
+
+        function saveSchoolProfile(school){
+          try { localStorage.setItem('tbp_school', school); } catch {}
+        }
+
+        populateSchoolSelect();
+        window.addEventListener('tbp:auth:login', populateSchoolSelect);
+        window.addEventListener('storage', function(e){
+          if (!e) return;
+          if (e.key === 'tbp_token' || e.key === 'tbp_user') populateSchoolSelect();
+        });
+
+        render();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>ThinkBigPrep: AI-Powered Learning, Human-Powered Growth</title>
+        <meta name="description" content="Personalized, AI Powered tutoring from top university engineers. Master Algebra, Geometry, Chemistry, Biology, Pre-Calculus, Physics, Calculus and more." />
+        <!-- Open Graph / Social preview -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="ThinkBigPrep" />
+        <meta property="og:description" content="Personalized, AI-powered tutoring and exam prep." />
+        <meta property="og:image" content="/assets/logo/thinkbigprep-icon.svg" />
+        <meta property="og:image:type" content="image/svg+xml" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ThinkBigPrep" />
+        <meta name="twitter:description" content="Personalized, AI-powered tutoring and exam prep." />
+        <meta name="twitter:image" content="/assets/logo/thinkbigprep-icon.svg" />
+        <link rel="shortcut icon" href="assets/logo/thinkbigprep-icon.svg" type="image/svg+xml" />
+        <link rel="stylesheet" href="css/index.css?v=1.1" />
+        <link rel="stylesheet" href="css/login.css?v=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+    </head>
+    <body class="home">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <a href="#home" class="logo" aria-label="ThinkBigPrep Logo" style="text-decoration:none;color:inherit;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" role="img" focusable="false">
+                        <defs>
+                            <linearGradient id="tbpGrad" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#BFD0B0"/>
+                                <stop offset="100%" stop-color="#E1DCC9"/>
+                            </linearGradient>
+                        </defs>
+                        <g transform="translate(6,6)">
+                            <rect x="0" y="0" width="36" height="36" rx="10" fill="url(#tbpGrad)"/>
+                            <g transform="translate(18,18) rotate(-10)">
+                                <path class="tbp-star" d="M0 -10 L2 -2 L10 0 L2 2 L0 10 L-2 2 L-10 0 L-2 -2 Z" fill="#6b3410" opacity="0.9"/>
+                            </g>
+                        </g>
+                        <g fill="#6b3410" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-weight="700">
+                            <text x="54" y="31" font-size="20">ThinkBigPrep</text>
+                        </g>
+                    </svg>
+                </a>
+                
+                <nav class="nav-desktop">
+                    <a href="#home">Home</a>
+                    <a href="timetable.html">Timetable</a>
+                    <a href="#courses">Plans</a>
+                    <a href="#coaches">Available Tutors</a>
+                    <a href="about.html">About Us</a>
+                    <a href="jarvis.html">Jarvis</a>
+                    <a href="ai-curriculum.html">AI Curriculum</a>
+                    <a href="problem-sets.html">Think Lab <span class="new-tag">NEW</span></a>
+                    <a href="login.html" class="student-login-link">Student Login</a>
+                </nav>
+                
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+            
+            <nav class="nav-mobile" id="mobile-menu">
+                <a href="#home">Home</a>
+                <a href="timetable.html">Timetable</a>
+                <a href="#courses">Courses</a>
+                <a href="#coaches">Available Engineers</a>
+                <a href="#about">About Us</a>
+                <a href="ai-curriculum.html" class="ai-curriculum-link">AI Curriculum<span class="new-tag">NEW</span></a>
+                <a href="login.html">Student Login</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1 class="hero-title">The Gen Z Way to Understand</h1>
+                <span class="hero-highlight">Algebra</span>
+                <p class="hero-subtitle">Education, built by engineers. Centered on You.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Start Enrollment</a>
+                    <a href="ai-curriculum.html" class="btn btn-secondary">AI Curriculum Generator</a>
+                </div>
+            </div>
+            
+            <!-- Math Notations in Background - Reduced Set -->
+            <div class="math-symbol pi-symbol">π</div>
+            <div class="math-symbol integral-symbol">∫</div>
+            <div class="math-symbol delta-symbol">Δ</div>
+            <div class="math-symbol theta-symbol">θ</div>
+            <div class="math-symbol alpha-symbol">α</div>
+            <div class="math-symbol beta-symbol">β</div>
+            <div class="math-symbol lambda-symbol">λ</div>
+            <div class="math-symbol mu-symbol">μ</div>
+            <div class="math-symbol nu-symbol">ν</div>
+            
+            <!-- Additional Sigma, Integral, and Delta notations -->
+            <div class="math-symbol sigma-large">Σ</div>
+            <div class="math-symbol integral-large">∫</div>
+            <div class="math-symbol delta-large">Δ</div>
+            <div class="math-symbol sigma-small">∑</div>
+            <div class="math-symbol integral-small">∫</div>
+            <div class="math-symbol delta-small">δ</div>
+        </section>
+
+        <!-- Assessment Section -->
+        <section class="assessment">
+            <div class="container">
+                <div class="assessment-card">
+                    <div class="assessment-content">
+                        <div class="assessment-text">
+                            <h2 class="section-title">Learn Faster<br>Cram Better<br>Win Bigger</h2>
+                            <p class="section-description">
+                                ThinkBigPrep is a modern tutoring platform built for flexibility and affordability. Students can register sessions in minutes, get instant answers to their questions, and access personalized support whenever they need it. By leveraging AI tools—such as Perplexity, Cursor, and ChatGPT—alongside our in-house AI that transforms school notes and past problems into custom study materials, we design tailored curricula that directly prepare students for their quizzes and exams. This approach goes beyond the limits of traditional education, keeping students at the center of their learning journey.
+                            </p>
+                        </div>
+                        
+                        <div class="process-flow">
+                            <div class="process-step">
+                                <div class="process-icon">✓</div>
+                                <h3>Diagnostic Assessment</h3>
+                            </div>
+                            <div class="arrow">→</div>
+                            <div class="process-step">
+                                <div class="process-icon">☰</div>
+                                <h3>Custom Curriculum</h3>
+                            </div>
+                            <div class="arrow">→</div>
+                            <div class="process-step">
+                                <div class="process-icon">⊕</div>
+                                <h3>Expert Delivery</h3>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="math-formulas">
+                        <div class="formula">f(x) = ax² + bx + c</div>
+                        <div class="formula">E = mc²</div>
+                        <div class="formula">P₁ + ½ρv₁² + ρgy₁ = P₂ + ½ρv₂² + ρgy₂</div>
+                    </div>
+                    
+                    <!-- Background decorative elements -->
+                    <div class="bg-element bg-curve-1"></div>
+                    <div class="bg-element bg-curve-2"></div>
+                    <div class="bg-element bg-triangle"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coaches Section -->
+        <section class="coaches" id="coaches">
+            <div class="container">
+                <h2 class="section-title">Taught by Elite Engineers</h2>
+                <p class="section-description">
+                    Industry renowned engineers who understand both the art and science of mathematical excellence
+                </p>
+                
+                <div class="universities">
+                    <div class="universities-inner">
+                        <div class="university">
+                            <img src="./assets/logos/mit.png" alt="MIT" />
+                        </div>
+                        <div class="university">
+                            <img src="./assets/logos/usc.png" alt="USC" />
+                        </div>
+                        <div class="university">
+                            <img src="./assets/logos/nyu.png" alt="NYU" />
+                        </div>
+                        <div class="university">
+                            <img src="./assets/logos/ucb.png" alt="UC Berkeley" />
+                        </div>
+                        <div class="university">
+                            <img src="./assets/logos/cmu.png" alt="Carnegie Mellon" />
+                        </div>
+                        <!-- Duplicate logos for seamless scrolling -->
+                        <div class="university">
+                            <img src="./assets/logos/mit.png" alt="MIT" />
+                        </div>
+                        <div class="university">
+                            <img src="./assets/logos/usc.png" alt="USC" />
+                        </div>
+                        <div class="university">
+                            <img src="./assets/logos/nyu.png" alt="NYU" />
+                        </div>
+                        <div class="university">
+                            <img src="./assets/logos/ucb.png" alt="UC Berkeley" />
+                        </div>
+                        <div class="university">
+                            <img src="./assets/logos/cmu.png" alt="Carnegie Mellon" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="coaches-grid">
+                    <div class="coach-card">
+                        <div class="coach-header">
+                            <img src="./assets/people/kevin.jpg" alt="Kevin Zhao" class="coach-photo" />
+                            <div class="coach-info">
+                                <h3>Kevin Zhao</h3>
+                                <p>MIT Mathematics & Computer Science</p>
+                            </div>
+                        </div>
+                        <p class="coach-description">
+                            Kevin Zhao is a senior at MIT majoring in Mathematics & Computer Science. Kevin specializes in advanced mathematical concepts and MIT-level problem solving, helping students master complex topics with clarity and confidence.
+                        </p>
+                    </div>
+                    
+                    <div class="coach-card">
+                        <div class="coach-header">
+                            <img src="./assets/people/juan.png" alt="Juan Garcia" class="coach-photo" />
+                            <div class="coach-info">
+                                <h3>Juan Garcia</h3>
+                                <p>UC Berkeley Mathematics & CS</p>
+                            </div>
+                        </div>
+                        <p class="coach-description">
+                            Juan Garcia is a sophomore studying Mathematics & Computer Science at UC Berkeley. Juan brings dual math & CS expertise to his coaching, helping students understand the practical applications of mathematical concepts.
+                        </p>
+                    </div>
+                    
+                    <div class="coach-card">
+                        <div class="coach-header">
+                            <img src="./assets/people/luke.png" alt="Luke Greenawalt" class="coach-photo" />
+                            <div class="coach-info">
+                                <h3>Luke Greenawalt</h3>
+                                <p>Carnegie Mellon CS</p>
+                            </div>
+                        </div>
+                        <p class="coach-description">
+                            Luke Greenawalt is a freshman at Carnegie Mellon University, studying Computer Science. He has excelled in mathematics and computer science, with a passion for number theory. He is excited to help students discover the beauty and practical applications of mathematics!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platform Section -->
+        <section class="platform" id="student-hub">
+            <div class="container">
+                <h2 class="section-title">ThinkBigPrep Learning Platform</h2>
+                <p class="section-description">
+                    Experience our proprietary web application designed exclusively for academic excellence
+                </p>
+                
+                <div class="platform-content">
+                    <div class="platform-features">
+                        <div class="feature">
+                            <h3>Direct Coach Communication</h3>
+                            <p>Seamlessly connect with your personal coach through our integrated messaging system. Get instant feedback, ask questions, and receive guidance whenever you need it.</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <h3>Graded Submissions & Feedback</h3>
+                            <p>Submit your work directly through the platform and receive detailed, personalized feedback from expert coaches. Track your progress with comprehensive grading analytics.</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <h3>Integrated Meeting Scheduler</h3>
+                            <p>Schedule and join coaching sessions directly through the platform. Automated reminders, calendar integration, and one-click meeting access make learning effortless.</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <h3>Comprehensive Resource Library</h3>
+                            <p>Access AMC Academy's extensive collection of practice problems, solution guides, competition strategies, and exclusive materials curated by our expert team.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-demo">
+                        <video class="demo-video" autoplay muted loop poster="./assets/images/dashboard1.png">
+                            <source src="./assets/researchbg.mp4" type="video/mp4">
+                            <img src="./assets/images/dashboard1.png" alt="Platform Demo" style="width: 100%; height: auto;">
+                        </video>
+                        <p class="demo-caption">Basic Platform Demo</p>
+                        <p class="demo-subtitle">With much more for you to explore!</p>
+                        <a href="timetable.html?drawer=open" class="btn btn-primary">Experience the Platform</a>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </section>
+
+        <!-- Coaching Section -->
+        <section class="coaching">
+            <div class="container">
+                <h2 class="section-title">1-on-1 Personalized Coaching</h2>
+                <p class="section-description">
+                    Tailored mentorship from top university engineers who understand your academic journey
+                </p>
+                
+                <div class="coaching-benefits">
+                    <div class="benefit">
+                        <h4>Targeted Skill Development</h4>
+                        <p>Focus intensively on your specific weak areas while accelerating your natural strengths</p>
+                    </div>
+                    
+                    <div class="benefit">
+                        <h4>Flexible Curriculum</h4>
+                        <p>Adapt your learning path in real-time based on progress and competition calendar</p>
+                    </div>
+                    
+                    <div class="benefit">
+                        <h4>Mentor Relationship</h4>
+                        <p>Build lasting connections with coaches who've walked your path to success</p>
+                    </div>
+                </div>
+                
+                <a href="#coaches" class="btn btn-secondary">Meet All Our Coaches</a>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section class="courses" id="courses">
+            <div class="container">
+                <h2 class="section-title">Premium Classes. Prestigious Engineers.</h2>
+                
+                <div class="courses-grid">
+                    <div class="course-card featured">
+                        <div class="course-header">
+                            <h3>Exam Cram Sessions</h3>
+                            <p class="course-goal">Goal: Ace your upcoming Exams</p>
+                        </div>
+                        <div class="course-price">$399.99</div>
+                        <p class="course-duration">for 10 comprehensive classes</p>
+                        <p class="course-dates">Dates are decided based on upcoming exam dates.</p>
+                        <ul class="course-features">
+                            <li>Intensive group study sessions</li>
+                            <li>Crash course on key concepts</li>
+                            <li>Exam study guide review</li>
+                            <li>No questions unanswered</li>
+                        </ul>
+                        <button class="btn btn-primary">Schedule Now</button>
+                    </div>
+                    
+                    <div class="course-card">
+                    <div class="course-header"> 
+                            <h3>1-on-1 Tutoring</h3>
+                            <p class="course-goal">Goal: Master your STEM Subjects</p>
+                        </div>
+                        <div class="course-price">$799.99</div>
+                        <p class="course-duration">for 10 private lessons</p>
+                        <p class="course-dates">Dates are decided based on students' availability.</p>
+                        <ul class="course-features">
+                            <li>Personalized lessons</li>
+                            <li>Step-by-step lessons</li>
+                            <li>Visual problem solving</li>
+                            <li>Comprehensive geometric techniques</li>
+                        </ul>
+                        <button class="btn btn-primary">Schedule Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Curriculum moved to its own page: ai-curriculum.html -->
+
+        <!-- Success Stories Section -->
+        <section class="success-stories">
+            <div class="container">
+                <h2 class="section-title">Student Success Stories</h2>
+                <p class="section-description">
+                    Real results from personalized coaching that adapts to each student's unique academic profile
+                </p>
+                
+                <div class="stories-grid">
+                    <div class="story-card">
+                        <h4>Algebra Student Success</h4>
+                        <blockquote>
+                            "Everything went really smoothly, and I really enjoyed the lessons as the coaches went over every concept in detail, and was very entertaining. Really cool and fun, I would recommend it for other students trying to master algebra."
+                        </blockquote>
+                        <div class="story-author">
+                            <strong>Eric</strong>
+                            <p>Focus: Algebra Preparation</p>
+                            <p>Coach: ThinkBigPrep Team</p>
+                        </div>
+                    </div>
+                    
+                    <div class="story-card">
+                        <h4>Improved Math Scores</h4>
+                        <blockquote>
+                            "My daughter signed up for the course to improve her math skills. We are pleased with her increased understanding and confidence in mathematics!"
+                        </blockquote>
+                        <div class="story-author">
+                            <strong>Joanna (Parent)</strong>
+                            <p>Focus: Mathematics Preparation</p>
+                            <p>Coach: ThinkBigPrep Team</p>
+                        </div>
+                    </div>
+                    
+                    <div class="story-card">
+                        <h4>Improved Problem-Solving Approach</h4>
+                        <blockquote>
+                            "I really enjoyed my experience thus far with ThinkBigPrep. The teachers are really hands-on with their students, and I feel that I have gained a lot of knowledge that has improved not only my understanding but the way I approach problems."
+                        </blockquote>
+                        <div class="story-author">
+                            <strong>ThinkBigPrep Student</strong>
+                            <p>Focus: Comprehensive Math Training</p>
+                            <p>Coach: ThinkBigPrep Team</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Back to Top Arrow (centered above footer) -->
+        <div class="back-to-top-center">
+            <a href="#home" class="btn btn-primary back-to-top-btn" aria-label="Back to top">
+                <i class="bi bi-arrow-up"></i>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <img src="./assets/logo/thinkbigprep-logo.svg" alt="ThinkBigPrep" />
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>GET STARTED</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">Timetable</a></li>
+                            <li><a href="#student-hub">Plans</a></li>
+                            <li><a href="#ai-curriculum">Available Tutors</a></li>
+                            <li><a href="#coaches">About Us</a></li>
+                            <li><a href="#coaches">AI Curriculum</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>CONTACT US</h4>
+                        <p>Phone: +1 (201) 665-0123</p>
+                        <p>Email: info@thinkbigprep.com</p>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>Copyright © 2025 ThinkBigPrep Inc. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+
+        <script>window.TBP_AUTH_BASE='https://cramprep.onrender.com';</script>
+        <script src="index.js?v=1.1"></script>
+        <script src="login.js?v=1.0"></script>
+        <a href="#contact" class="btn btn-primary floating-consult-btn"><i class="bi bi-calendar-event"></i> Book Consultation</a>
+        
+        <!-- Enrollment Modal -->
+        <div id="enrollModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="enrollTitle">
+            <div class="modal-overlay" data-close-modal></div>
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Close" data-close-modal>&times;</button>
+                <h3 id="enrollTitle" class="section-title" style="font-size: 1.6rem;">Enrollment Request</h3>
+                <p class="section-description" style="margin-bottom: 18px;">Fill out the form and we’ll reach out shortly.</p>
+                <form id="enrollForm" novalidate>
+                    <div class="enroll-grid">
+                        <div>
+                            <label for="parentName">Parent Name <span class="required-star">*</span></label>
+                            <input id="parentName" name="parentName" type="text" placeholder="e.g., Homer Simpson" required>
+                            <div class="field-error">Parent name is required.</div>
+                        </div>
+                        <div>
+                            <label for="studentName">Student Name <span class="required-star">*</span></label>
+                            <input id="studentName" name="studentName" type="text" placeholder="e.g., Bart Simpson" required>
+                            <div class="field-error">Student name is required.</div>
+                        </div>
+                        <div>
+                            <label for="studentGrade">Student Grade <span class="required-star">*</span></label>
+                            <input id="studentGrade" name="studentGrade" type="text" placeholder="e.g., 9th or Freshman" required>
+                            <div class="field-error">Student grade is required.</div>
+                        </div>
+                        <div>
+                            <label for="school">School <span class="required-star">*</span></label>
+                            <input id="school" name="school" type="text" required>
+                            <div class="field-error">School is required.</div>
+                        </div>
+                        <div class="full">
+                            <label for="subject">Subject <span class="required-star">*</span></label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option>Algebra</option>
+                                <option>Geometry</option>
+                                <option>Pre-Calculus</option>
+                                <option>Calculus</option>
+                                <option>Physics</option>
+                                <option>Chemistry</option>
+                                <option>Biology</option>
+                                <option>Computer Science</option>
+                                <option>SAT</option>
+                                <option>ACT</option>
+                            </select>
+                            <div class="field-error">Subject is required.</div>
+                        </div>
+                        <div class="full">
+                            <label for="preferredPlan">Preferred Plan</label>
+                            <select id="preferredPlan" name="preferredPlan">
+                                <option value="">Select a plan</option>
+                                <option value="Exam Cram Sessions">Exam Cram Sessions</option>
+                                <option value="1-on-1 Tutoring">1-on-1 Tutoring</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="email">Email <span class="required-star">*</span></label>
+                            <input id="email" name="email" type="email" required>
+                            <div class="field-error">Valid email is required.</div>
+                        </div>
+                        <div>
+                            <label for="phone">Phone Number <span class="required-star">*</span></label>
+                            <input id="phone" name="phone" type="tel" inputmode="numeric" required>
+                            <div class="field-error">Enter a valid 10-digit phone number.</div>
+                        </div>
+                        <div class="full">
+                            <label for="contactPreference">Preferred Contact <span class="required-star">*</span></label>
+                            <select id="contactPreference" name="contactPreference" required>
+                                <option value="">Select preference</option>
+                                <option value="Email">Email</option>
+                                <option value="Phone">Phone</option>
+                            </select>
+                            <div class="field-error">Please choose a contact preference.</div>
+                        </div>
+                        <div class="full">
+                            <label for="comments">Additional Comments</label>
+                            <textarea id="comments" name="comments" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="index.js"></script>
+        <script src="login.js?v=1.0"></script>
+    </body>
+</html>
