@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
+    <div class="announcement-banner" id="announcementBanner" role="status" aria-live="polite">
+      <span class="hero-info-icon hero-info-icon--phone announcement-banner__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M6.6 3h2.8a1 1 0 0 1 1 .88l.34 2.73a1 1 0 0 1-.58 1.02l-1.93.86a11.03 11.03 0 0 0 4.95 4.95l.86-1.93a1 1 0 0 1 1.02-.58l2.73.34a1 1 0 0 1 .88 1v2.8a1 1 0 0 1-1 1c-8.28 0-15-6.72-15-15a1 1 0 0 1 1-1z" />
+        </svg>
+      </span>
+      <span>Now offering Swim Lessons for all children. Call now!</span>
+      <button type="button" class="announcement-banner__close" aria-label="Dismiss announcement">×</button>
+    </div>
     <header class="site-header">
       <div class="container nav-bar">
         <a href="#home" class="brand">
@@ -20,197 +29,237 @@
           <a href="#home">Home</a>
           <a href="#approach">Approach</a>
           <a href="#about">About</a>
-          <a href="#services">Programs</a>
+          <div class="nav-dropdown">
+            <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">Programs ▾</button>
+            <div class="dropdown-menu" role="menu">
+              <a href="#services" role="menuitem" class="nav-program-link" data-service="aquatic-therapy">Aquatic Therapy</a>
+              <a href="#services" role="menuitem" class="nav-program-link" data-service="speech-therapy">Speech Therapy</a>
+              <a href="#services" role="menuitem" class="nav-program-link" data-service="occupational-therapy">Occupational Therapy</a>
+              <a href="#services" role="menuitem" class="nav-program-link" data-service="physical-therapy">Physical Therapy</a>
+              <a href="#services" role="menuitem" class="nav-program-link" data-service="listening-therapy">Listening Therapy</a>
+              <a href="#services" role="menuitem" class="nav-program-link" data-service="swim-lessons">Swim Lessons</a>
+            </div>
+          </div>
           <a href="#insights">Insights</a>
           <a href="#contact">Contact</a>
         </nav>
         <div class="nav-actions">
-          <a class="book-tour-btn" href="#contact">Book a Tour</a>
+          <button class="book-tour-btn form-trigger" type="button">Tour our facility</button>
         </div>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
       </div>
     </header>
 
-    <main>
-      <section class="hero" id="home">
-        <div class="container hero-grid">
+    <div class="layout-shell">
+      <main>
+        <section class="hero" id="home">
+        <div class="section-wrap hero-grid">
           <div class="hero-content">
-            <p class="eyebrow">Welcome to Kindera-inspired care</p>
+            <p class="eyebrow">Welcome to Bergen Pediatric Therapy Center</p>
             <h1>Your child deserves to live their best life</h1>
-            <p>
-              Viverra enim sodales nunc sed ante cubilia. Phasellus sit scelerisque elit morbi natoque curae. Our Bergen team blends evidence-based
-              therapies with the playful energy families love from the Kindera experience.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#services">Discover programs</a>
-              <button class="btn btn-ghost" type="button">
-                <span aria-hidden="true">▶</span>
-                Play intro
-              </button>
+            <div class="hero-info-inline">
+              <a
+                id="heroMapLink"
+                class="hero-info-card hero-info-card--link"
+                href="https://www.google.com/maps/dir/?api=1&origin=My+Location&destination=354+Old+Hook+Road,+Suite+LL-1,+Westwood,+NJ+07675&travelmode=driving"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open address in Google Maps"
+                data-destination="354 Old Hook Road, Suite LL-1, Westwood, NJ 07675"
+              >
+                <span class="hero-info-icon hero-info-icon--home" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5.5a.5.5 0 0 1-.5-.5V15h-4v6.5a.5.5 0 0 1-.5.5H4a1 1 0 0 1-1-1v-10z" />
+                  </svg>
+                </span>
+                <p>354 Old Hook Road, Suite LL-1<br />Westwood, NJ 07675</p>
+              </a>
+              <a class="hero-info-card hero-info-card--link" href="tel:12017224700" aria-label="Call (201)-722-4700">
+                <span class="hero-info-icon hero-info-icon--phone" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M6.6 3h2.8a1 1 0 0 1 1 .88l.34 2.73a1 1 0 0 1-.58 1.02l-1.93.86a11.03 11.03 0 0 0 4.95 4.95l.86-1.93a1 1 0 0 1 1.02-.58l2.73.34a1 1 0 0 1 .88 1v2.8a1 1 0 0 1-1 1c-8.28 0-15-6.72-15-15a1 1 0 0 1 1-1z" />
+                  </svg>
+                </span>
+                <p>(201)-722-4700</p>
+              </a>
             </div>
+            <p>
+              The staff of Bergen Pediatric Therapy’s goal is to broaden the possibilities of all children and families they serve. The entire team strives to provide excellent comprehensive services to each child by serving the child’s needs.  Their comprehensive services also include supporting all members of the family.
+            </p>
+            <p id="heroLocationMessage" class="hero-location-message" role="status" aria-live="polite"></p>
             <div class="hero-stats">
               <div class="stat">
-                <strong>950+</strong>
-                Families supported across North Jersey
+                <strong>Since 2007</strong>
+                Proudly serving Bergen County families
               </div>
               <div class="stat">
-                <strong>21</strong>
-                Licensed pediatric therapists on staff
+                <strong>1000 +</strong>
+                Families supported across New Jersey
               </div>
               <div class="stat">
-                <strong>12 yrs</strong>
-                Creating joyful milestones together
+                <strong>6</strong>
+                Life changing therapy services
               </div>
             </div>
           </div>
           <div class="hero-media">
-            <img src="https://kitnew.moxcreative.com/kindera/wp-content/uploads/sites/35/2023/01/boy-on-therapy-swing.jpg" alt="Boy on therapy swing" />
-            <div class="hero-badge">
-              <p class="eyebrow" style="letter-spacing: 0.25em; color: var(--color-secondary)">Care plan</p>
-              <h3 style="font-family: 'Baloo 2', cursive">Personalized Sessions</h3>
-              <p style="color: var(--color-muted)">Speech, occupational, behavioral, and family coaching fused into one roadmap.</p>
-            </div>
-            <div class="hero-call">
-              <p style="opacity: 0.8">Call Expert</p>
-              <strong style="font-size: 1.6rem">(201) 555-2740</strong>
-              <p style="opacity: 0.8">hello@bergenpediatric.com</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="approach" class="approach-section">
-        <div class="container">
-          <div class="section-header approach-header">
-            <p class="eyebrow">Our approach</p>
-            <h2>Our Approach</h2>
-            <p>Each stage of care is designed to feel soft, safe, and joyful—just like the Kindera kit that inspired this build.</p>
-          </div>
-          <div class="approach-steps">
-            <article class="approach-step">
-              <div class="approach-icon">1</div>
-              <h3>Get Appointment</h3>
-              <p>Match with a lead clinician within 48 hours and receive a pre-visit strengths checklist.</p>
-            </article>
-            <article class="approach-step">
-              <div class="approach-icon">2</div>
-              <h3>Meet With Our Therapist</h3>
-              <p>In-studio or telehealth consultations designed to feel playful, safe, and judgment-free.</p>
-            </article>
-            <article class="approach-step">
-              <div class="approach-icon">3</div>
-              <h3>Diagnostic Observation</h3>
-              <p>Multidisciplinary observations inform a Kindera-style visual plan your child can understand.</p>
-            </article>
-            <article class="approach-step">
-              <div class="approach-icon">4</div>
-              <h3>Begin Therapy Service</h3>
-              <p>Weekly sessions combine sensory play, coaching, and data-rich progress notes for families.</p>
-            </article>
+            <img src="../assets/pictures/Picture 1.jpeg" alt="Bergen Pediatric therapy session" />
+            <a class="hero-badge" href="https://www.njkidsonline.com/articles/flip-the-latest-edition-of-nj-kids-on-the-go-ebook" target="_blank" rel="noopener noreferrer">
+              <span class="badge-text">
+                <span class="badge-label">Recently Featured on</span>
+                <img src="../assets/logo/New_Jersey_Kids.svg" alt="NJKIDS logo" />
+              </span>
+            </a>
           </div>
         </div>
       </section>
 
       <section id="about">
-        <div class="container about-grid">
+        <div class="section-wrap about-grid">
           <div>
             <p class="eyebrow">Who we are</p>
-            <h2>Helping children discover their inner strength and resilience</h2>
+            <h2>Bergen's most trusted pediatric therapy center <br>for over 20 years</h2>
             <p style="color: var(--color-muted); margin-top: 1rem">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              Bergen Pediatric Therapy Center is a team of licensed pediatric therapists who are dedicated to providing the best possible care for your child.
             </p>
             <ul class="feature-list">
               <li><span>✓</span> Integrated speech, OT, PT, and behavioral health services.</li>
               <li><span>✓</span> Sensory-rich gym, feeding studio, and flexible telehealth.</li>
               <li><span>✓</span> Family coaching, IEP advocacy, and community workshops.</li>
             </ul>
-            <a class="btn btn-primary" href="#services">Meet the team</a>
+            <a class="btn btn-bar" href="team.html">Meet the team</a>
           </div>
           <div class="about-media">
-            <img src="https://kitnew.moxcreative.com/kindera/wp-content/uploads/sites/35/2023/01/little-children-in-art-class-with-teacher.jpg" alt="Children in art class" />
-            <div class="about-overlay">
-              <p class="eyebrow" style="letter-spacing: 0.25em; color: var(--color-secondary)">Success rate</p>
-              <strong style="display: block; font-size: 2rem; font-family: 'Baloo 2', cursive">96%</strong>
-              <p style="color: var(--color-muted)">Of families report more confident communication after 12 weeks.</p>
+            <img id="aboutImage" src="../assets/pictures/Picture 4.jpg" alt="Therapist working with child" />
+            <div class="about-controls">
+              <button class="about-control-btn" data-direction="-1" aria-label="Previous photo">‹</button>
+              <button class="about-control-btn" data-direction="1" aria-label="Next photo">›</button>
             </div>
           </div>
         </div>
       </section>
 
+      <section id="approach" class="approach-section">
+        <span class="approach-ornament" aria-hidden="true"></span>
+        <div class="section-wrap">
+          <div class="section-header approach-header">
+            <h2>Our Approach</h2>
+            <p>Each stage is designed to provide your child with the best possible care.</p>
+          </div>
+          <div class="approach-steps">
+            <article class="approach-step">
+              <div class="approach-icon">1</div>
+              <img class="approach-image" src="../assets/Steps/get_appointment.png" alt="Get appointment illustration" />
+              <h3>Get Appointment</h3>
+              <p>Schedule an appointment with our team of licensed therapists.</p>
+            </article>
+            <article class="approach-step">
+              <div class="approach-icon">2</div>
+              <img class="approach-image" src="../assets/Steps/meet_with_therapist.png" alt="Meet with therapist illustration" />
+              <h3>Meet With Our Therapist</h3>
+              <p>Meet with our team of licensed therapists to discuss your child's needs and goals.</p>
+            </article>
+            <article class="approach-step">
+              <div class="approach-icon">3</div>
+              <img class="approach-image" src="../assets/Steps/diagnostic_observation.png" alt="Diagnostic observation illustration" />
+              <h3>Diagnostic Observation</h3>
+              <p>Our team of licensed therapists will observe your child's behavior and develop a plan of care.</p>
+            </article>
+            <article class="approach-step">
+              <div class="approach-icon">4</div>
+              <img class="approach-image" src="../assets/Steps/begin_therapy_service.png" alt="Begin therapy service illustration" />
+              <h3>Begin Therapy Service</h3>
+              <p>Begin therapy services with our team of licensed therapists.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="services" id="services">
-        <div class="container">
-          <div class="section-header">
-            <p class="eyebrow">Programs</p>
-            <h2>Therapy can give your child the confidence and resilience they need to succeed.</h2>
-            <p>Kindera’s Element template inspired the playful gradients and round shapes we use throughout our Bergen experience.</p>
+        <div class="section-wrap">
+          <div class="section-header wide">
+            <h2>Our Services</h2>
+            <p class="wide">Guided by Bergen's best therapists, our services are designed to help your child reach their full potential.</p>
           </div>
           <div class="services-grid">
-            <article class="card">
-              <small>ST</small>
+            <article class="card" id="aquatic-therapy">
+              <span class="service-icon">
+                <img src="../assets/steps/Services/aquatic.png" alt="Aquatic therapy icon" />
+              </span>
+              <strong>Aquatic Therapy</strong>
+              <p>Warm-water sessions that build strength, sensory regulation, and confidence through guided play.</p>
+              <button class="pill service-detail-trigger" type="button" data-service="aquatic-therapy">Learn more</button>
+            </article>
+            <article class="card" id="speech-therapy">
+              <span class="service-icon">
+                <img src="../assets/steps/Services/speech.png" alt="Speech therapy icon" />
+              </span>
               <strong>Speech Therapy</strong>
-              <p>Articulation, apraxia, fluency, AAC, feeding support, and social conversation play groups.</p>
-              <a class="pill" href="#">Learn more</a>
+              <p>Evidence-based speech, language, feeding, and social communication support for every stage.</p>
+              <button class="pill service-detail-trigger" type="button" data-service="speech-therapy">Learn more</button>
             </article>
-            <article class="card">
-              <small>OT</small>
+            <article class="card" id="occupational-therapy">
+              <span class="service-icon">
+                <img src="../assets/steps/Services/occupational.png" alt="Occupational therapy icon" />
+              </span>
               <strong>Occupational Therapy</strong>
-              <p>Sensory processing, fine-motor labs, handwriting, picky eating, and daily living routines.</p>
-              <a class="pill" href="#">Learn more</a>
+              <p>Sensory processing, fine-motor coordination, handwriting, and daily living independence coaching.</p>
+              <button class="pill service-detail-trigger" type="button" data-service="occupational-therapy">Learn more</button>
             </article>
-            <article class="card">
-              <small>PT</small>
+            <article class="card" id="physical-therapy">
+              <span class="service-icon">
+                <img src="../assets/steps/Services/physical.png" alt="Physical therapy icon" />
+              </span>
               <strong>Physical Therapy</strong>
-              <p>Strength and coordination adventures that make balance, gait, and posture goals fun.</p>
-              <a class="pill" href="#">Learn more</a>
+              <p>Gross-motor adventures that strengthen balance, gait, posture, and endurance through movement labs.</p>
+              <button class="pill service-detail-trigger" type="button" data-service="physical-therapy">Learn more</button>
             </article>
-            <article class="card">
-              <small>BH</small>
-              <strong>Behavioral Health</strong>
-              <p>Play-based counseling, anxiety support, executive function coaching, and SEL groups.</p>
-              <a class="pill" href="#">Learn more</a>
+            <article class="card" id="listening-therapy">
+              <span class="service-icon">
+                <img src="../assets/steps/Services/listening.png" alt="Listening therapy icon" />
+              </span>
+              <strong>Listening Therapy</strong>
+              <p>Auditory integration, music-based protocols, and home carryover plans to sharpen attention and calm.</p>
+              <button class="pill service-detail-trigger" type="button" data-service="listening-therapy">Learn more</button>
             </article>
-            <article class="card">
-              <small>FC</small>
-              <strong>Family Coaching</strong>
-              <p>Parent intensives, home program design, and school advocacy rooted in collaborative care.</p>
-              <a class="pill" href="#">Learn more</a>
-            </article>
-            <article class="card">
-              <small>SG</small>
-              <strong>Social Groups</strong>
-              <p>Friendship labs, sibling hangouts, and creative clubs for every age and ability.</p>
-              <a class="pill" href="#">Learn more</a>
+            <article class="card" id="swim-lessons">
+              <span class="service-icon">
+                <img src="../assets/steps/Services/swim.png" alt="Swim lessons icon" />
+              </span>
+              <strong>Swim Lessons</strong>
+              <p>Certified instructors blend safety, stroke mechanics, and sensory-friendly supports for every swimmer.</p>
+              <button class="pill service-detail-trigger" type="button" data-service="swim-lessons">Learn more</button>
             </article>
           </div>
         </div>
       </section>
 
       <section>
-        <div class="container promise-grid">
+        <div class="section-wrap promise-grid">
           <article class="promise-card">
-            <img src="https://kitnew.moxcreative.com/kindera/wp-content/uploads/sites/35/2023/01/child-psychologist-session-mother-daughter-therapist-together-in-office.jpg" alt="Mother and daughter in therapy" />
+            <img src="../assets/pictures/Picture 10.jpg" alt="Therapist supporting a family" />
             <div class="content">
               <p class="eyebrow">Family promise</p>
               <h3 style="font-family: 'Baloo 2', cursive; font-size: 1.9rem">Helping children find their voice and build healthy relationships.</h3>
               <p style="color: var(--color-muted); margin-top: 1rem">
-                Commodo consequat at parturient est sagittis tellus vestibulum ultrices laoreet. Pellentesque risus nam cubilia nascetur morbi odio erat.
+                Our goal is to help children find their voice and build healthy relationships. We believe that every child is unique and deserves to be treated with the respect and dignity they deserve.
               </p>
             </div>
           </article>
           <article class="promise-card">
-            <img src="https://kitnew.moxcreative.com/kindera/wp-content/uploads/sites/35/2023/01/expressing-emotions-through-art.jpg" alt="Child painting" />
+            <img src="../assets/pictures/Picture 11.jpg" alt="Child participating in therapy intensive" />
             <div class="content">
               <p class="eyebrow">Treatment intensives</p>
-              <h3 style="font-family: 'Baloo 2', cursive; font-size: 1.9rem">Weekend and holiday programs that accelerate skills.</h3>
+              <h3 style="font-family: 'Baloo 2', cursive; font-size: 1.9rem">Providing children with the support they need to thrive.</h3>
               <p style="color: var(--color-muted); margin-top: 1rem">
-                Duis aliquet justo non erat semper, eget cursus sapien viverra. Every intensive ends with a bright Kindera-style celebration board.
+                Our goal is to help children find their voice and build healthy relationships. We believe that every child is unique and deserves to be treated with the respect and dignity they deserve.
               </p>
             </div>
           </article>
         </div>
-        <div class="container metrics-grid">
+        <div class="section-wrap metrics-grid">
           <div class="metric">
-            <strong>4.9/5</strong>
+            <strong class="metric-rating">4.9/5</strong>
             Parent satisfaction score on post-session surveys
           </div>
           <div class="metric">
@@ -219,137 +268,150 @@
           </div>
           <div class="metric">
             <strong>100%</strong>
-            Clinicians trained on neurodiversity-affirming practices
+            Licensed therapists with expertise in pediatric therapy
           </div>
         </div>
       </section>
 
       <section class="testimonials">
-        <div class="container">
+        <div class="section-wrap">
           <div class="section-header">
             <p class="eyebrow" style="color: var(--color-secondary)">Stories</p>
             <h2>Families feel the difference</h2>
-            <p style="color: rgba(255, 255, 255, 0.7)">
-              Testimonials mirror the warmth of Kindera—bright, intentional, and always playful.
+            <p style="color: #000">
+              Testimonials mirror the warmth of Bergen Pediatric Therapy Center.
             </p>
           </div>
-          <div class="testimonial-wrapper">
-            <div class="testimonial-track" id="testimonialTrack">
-              <article class="testimonial-card">
-                <p>
-                  “The Bergen Pediatric team mirrors the warmth of the Kindera template—bright, intentional, and always playful. Our daughter now chats
-                  confidently with friends.”
-                </p>
-                <div class="testimonial-author">
-                  <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=200&q=80" alt="Laura Kim" />
-                  <div>
-                    <strong>Laura Kim</strong>
-                    <p>Speech Therapy Parent</p>
-                  </div>
-                </div>
-              </article>
-              <article class="testimonial-card">
-                <p>
-                  “From intake to graduation, the team guided us with visuals, games, and compassion. Occupational therapy turned tricky routines into
-                  sensory wins.”
-                </p>
-                <div class="testimonial-author">
-                  <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80" alt="Martinez family" />
-                  <div>
-                    <strong>The Martinez Family</strong>
-                    <p>Occupational Therapy Parents</p>
-                  </div>
-                </div>
-              </article>
-              <article class="testimonial-card">
-                <p>
-                  “Physical therapy sessions feel like whimsical gym adventures. Our son’s balance and confidence soared thanks to their coordinated
-                  care.”
-                </p>
-                <div class="testimonial-author">
-                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Sasha Reynolds" />
-                  <div>
-                    <strong>Sasha Reynolds</strong>
-                    <p>Physical Therapy Parent</p>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <div class="testimonial-controls">
-              <button class="control-btn" data-shift="-1" aria-label="Previous testimonial">‹</button>
-              <button class="control-btn" data-shift="1" aria-label="Next testimonial">›</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="insights">
-        <div class="container">
-          <div class="section-header">
-            <p class="eyebrow">Insights</p>
-            <h2>Latest guidance for Kindera-style care at home</h2>
-            <p>Curated resources from our clinical team plus the Envato Elements demo content you shared.</p>
-          </div>
-          <div class="insights-grid">
-            <article class="card">
-              <img src="https://kitnew.moxcreative.com/kindera/wp-content/uploads/sites/35/2023/01/parents-teaching-child-to-bake-pie.jpg" alt="Parents baking with child" />
-              <p class="eyebrow" style="color: var(--color-secondary)">Therapy tips</p>
-              <h3 style="font-family: 'Baloo 2', cursive">The benefits of child therapy: a guide for parents</h3>
-              <p>Adapt the Kindera playbook to your kitchen counter or car rides.</p>
+          <div class="testimonials-grid">
+            <article class="testimonial-card">
+              <div class="testimonial-rating" aria-label="5 out of 5 stars">
+                <span class="stars" aria-hidden="true">★★★★★</span>
+                <span class="score">5.0/5</span>
+              </div>
+              <p class="testimonial-quote">
+                “My son has been going to Bergen Pediatric Therapy Center for over a year now. He has made great progress and I am so grateful for the team’s support.”
+              </p>
+              <div class="testimonial-author">
+                <strong>Stacy A.</strong>
+                <span>Speech Therapy Parent</span>
+              </div>
             </article>
-            <article class="card">
-              <img src="https://kitnew.moxcreative.com/kindera/wp-content/uploads/sites/35/2023/01/smiling-child-psychologist-with-clipboard-sitting-on-chair-in-office-and-looking-at-camera.jpg" alt="Child psychologist" />
-              <p class="eyebrow" style="color: var(--color-secondary)">Community</p>
-              <h3 style="font-family: 'Baloo 2', cursive">How virtual sessions stay warm and engaging</h3>
-              <p>Our telehealth studio borrows directly from Kindera’s Elementor layout cues.</p>
+            <article class="testimonial-card">
+              <div class="testimonial-rating" aria-label="4.9 out of 5 stars">
+                <span class="stars" aria-hidden="true">★★★★★</span>
+                <span class="score">4.9/5</span>
+              </div>
+              <p class="testimonial-quote">
+                “From intake to graduation, the team guided us with visuals, games, and compassion. Occupational therapy turned tricky routines into sensory wins.”
+              </p>
+              <div class="testimonial-author">
+                <strong>The Martinez Family</strong>
+                <span>Occupational Therapy Parents</span>
+              </div>
             </article>
-            <article class="card">
-              <img src="https://kitnew.moxcreative.com/kindera/wp-content/uploads/sites/35/2023/01/girl-doing-homework-or-online-education-.jpg" alt="Girl doing homework" />
-              <p class="eyebrow" style="color: var(--color-secondary)">Education</p>
-              <h3 style="font-family: 'Baloo 2', cursive">Speech strategies for hybrid classrooms</h3>
-              <p>Set up visuals, timers, and flexible seating—straight from the template kit.</p>
+            <article class="testimonial-card">
+              <div class="testimonial-rating" aria-label="4.8 out of 5 stars">
+                <span class="stars" aria-hidden="true">★★★★★</span>
+                <span class="score">4.8/5</span>
+              </div>
+              <p class="testimonial-quote">
+                “Physical therapy sessions feel like whimsical gym adventures. Our son’s balance and confidence soared thanks to their coordinated care.”
+              </p>
+              <div class="testimonial-author">
+                <strong>Sasha Reynolds</strong>
+                <span>Physical Therapy Parent</span>
+              </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="contact">
-        <div class="container">
-          <div class="cta">
-            <div>
-              <small>Ready to begin?</small>
-              <h2 style="font-family: 'Baloo 2', cursive; font-size: clamp(2rem, 3vw, 2.8rem); margin-top: 1rem">
-                Schedule a complimentary discovery call.
-              </h2>
-              <p>Tell us about your child’s strengths and goals, and we’ll curate a Kindera-inspired roadmap for joyful growth.</p>
+        <section id="contact">
+          <div class="section-wrap">
+            <div class="cta">
+              <div>
+                <small class="cta-pill">Ready to begin?</small>
+                <h2 style="font-family: 'Baloo 2', cursive; font-size: clamp(2rem, 3vw, 2.8rem); margin-top: 1rem">
+                  Schedule a complimentary discovery call.
+                </h2>
+                <p>Tell us about your child’s strengths and goals, and we’ll curate a roadmap for joyful growth.</p>
+              </div>
+              <div>
+                <small>Call us</small>
+                <strong>(201)-722-4700</strong>
+                <small>Email</small>
+                <p>Victor@bergenpediatrictherapy.com</p>
+                <small>Studio hours</small>
+                <p>Mon–Sat, 8:00 AM – 6:00 PM</p>
+              </div>
+              <button class="btn btn-ghost form-trigger" type="button">Request appointment</button>
             </div>
-            <div>
-              <small>Call us</small>
-              <strong>(201) 555-2740</strong>
-              <small>Email</small>
-              <p>hello@bergenpediatric.com</p>
-              <small>Studio hours</small>
-              <p>Mon–Sat, 8:00 AM – 6:00 PM</p>
-            </div>
-            <a class="btn btn-ghost" href="mailto:hello@bergenpediatric.com">Request appointment</a>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+
+      <aside class="consultation-panel" id="consultationPanel" aria-labelledby="formTitle">
+        <h3 id="formTitle">Free Consultation &amp; Tour</h3>
+        <p>Call (201)-722-4700 or fill out our form below for a FREE Consultation and tour of our facilities</p>
+        <form id="consultationForm" class="consultation-form">
+          <label>
+            <span>Your Name</span>
+            <input type="text" name="name" placeholder="Jane Doe" required />
+          </label>
+          <label>
+            <span>Your Email</span>
+            <input type="email" name="email" placeholder="name@email.com" required />
+          </label>
+          <label>
+            <span>Your Phone</span>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="(201) 722-4700"
+              required
+              inputmode="tel"
+              pattern="^\(\d{3}\)\s?\d{3}-\d{4}$"
+              title="Enter a phone number in the format (201) 722-4700"
+            />
+          </label>
+          <label>
+            <span>Your Message</span>
+            <textarea name="message" rows="5" placeholder="Tell us about your child’s needs."></textarea>
+          </label>
+          <button type="submit" class="btn btn-bar form-submit-btn">Submit</button>
+        </form>
+      </aside>
+    </div>
+
+    <div class="service-modal" id="serviceModal" aria-hidden="true" role="dialog" aria-labelledby="serviceModalTitle">
+      <div class="service-modal__backdrop"></div>
+      <div class="service-modal__dialog" role="document">
+        <button class="service-modal__close" type="button" aria-label="Close service details">×</button>
+        <span class="service-modal__eyebrow">Program spotlight</span>
+        <h3 id="serviceModalTitle"></h3>
+        <div id="serviceModalContent" class="service-modal__content"></div>
+        <div id="serviceModalGallery" class="service-modal__gallery"></div>
+      </div>
+    </div>
+    <div class="form-toast" id="formToast" role="status" aria-live="polite">
+      Thank you and Victor, our co-founder, will be in touch soon.
+    </div>
 
     <footer>
       <div class="container footer-grid">
         <div class="footer-brand">
-          <img src="../assets/logo/bergen_pediatric-group-logo.png" alt="Bergen Pediatric Therapy Center" />
+          <div class="footer-logo-pill">
+            <img src="../assets/logo/bergen_pediatric-group-logo.png" alt="Bergen Pediatric Therapy Center" />
+          </div>
           <p>
-            125 Kinderkamack Road, Suite 2B<br />
-            Oradell, NJ 07649
+            354 Old Hook Road, Suite LL-1<br />
+            Westwood, NJ 07675
           </p>
         </div>
         <div>
           <h4 style="margin-bottom: 0.75rem">Contact</h4>
-          <p>Phone: (201) 555-2740</p>
-          <p>Email: hello@bergenpediatric.com</p>
+          <p>Phone: (201)-722-4700</p>
+          <p>Email: Victor@bergenpediatrictherapy.com</p>
           <p>Mon–Sat, 8:00 AM – 6:00 PM</p>
         </div>
         <div>
@@ -362,37 +424,478 @@
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">© <span id="year"></span> Bergen Pediatric Therapy Center. Inspired by the Kindera Elementor kit.</div>
+      <div class="footer-bottom">© <span id="year"></span> Bergen Pediatric Therapy Center</div>
     </footer>
 
     <script>
-      const navToggle = document.getElementById("navToggle");
-      const navMenu = document.getElementById("navMenu");
-      const testimonialTrack = document.getElementById("testimonialTrack");
-      const testimonialButtons = document.querySelectorAll(".control-btn");
+      const initPageInteractions = () => {
+        const navToggle = document.getElementById("navToggle");
+        const navMenu = document.getElementById("navMenu");
+        const aboutImage = document.getElementById("aboutImage");
+        const navDropdown = document.querySelector(".nav-dropdown");
+        const dropdownToggle = navDropdown ? navDropdown.querySelector(".dropdown-toggle") : null;
+        const heroMapLink = document.getElementById("heroMapLink");
+        const heroLocationMessage = document.getElementById("heroLocationMessage");
+        const consultationPanel = document.getElementById("consultationPanel");
+        const consultationForm = document.getElementById("consultationForm");
+        const formTriggers = document.querySelectorAll(".form-trigger");
+        const formToast = document.getElementById("formToast");
+        const consultationPhoneInput = consultationForm ? consultationForm.querySelector('input[name="phone"]') : null;
+        const announcementBanner = document.getElementById("announcementBanner");
+        const announcementClose = announcementBanner ? announcementBanner.querySelector(".announcement-banner__close") : null;
+        const serviceModal = document.getElementById("serviceModal");
+        const serviceModalTitle = document.getElementById("serviceModalTitle");
+        const serviceModalContent = document.getElementById("serviceModalContent");
+        const serviceModalGallery = document.getElementById("serviceModalGallery");
+        const serviceModalClose = serviceModal ? serviceModal.querySelector(".service-modal__close") : null;
+        const navProgramLinks = document.querySelectorAll(".nav-program-link");
+        const serviceDetailButtons = document.querySelectorAll(".service-detail-trigger");
+        const aboutPhotos = [
+          "../assets/pictures/Picture 4.jpg",
+          "../assets/pictures/Picture 5.jpg",
+          "../assets/pictures/Picture 6.jpg",
+          "../assets/pictures/Picture 7.jpg",
+          "../assets/pictures/Picture 8.jpg",
+          "../assets/pictures/Picture 9.jpg",
+        ];
+        const serviceDetails = {
+          "aquatic-therapy": {
+            title: "Aquatic Therapy",
+            description: [
+              "Our heated salt-water therapy pool provides a gravity-reduced environment that motivates kids to stretch, strengthen, and explore new movement patterns.",
+              "Sessions blend licensed physical therapy goals with sensory play such as bubbles, floating islands, and caregiver participation."
+            ],
+            images: [
+              {
+                src: "../assets/steps/Aquatic/heated salt water therapy pool.jpeg",
+                caption: "Heated salt-water therapy pool at Bergen Pediatric Therapy Center"
+              },
+              {
+                src: "../assets/steps/Aquatic/hands on physical therapy in our salt water pool.jpeg",
+                caption: "Hands-on support from aquatic physical therapists"
+              },
+              {
+                src: "../assets/steps/Aquatic/mommy-and-me in pool.jpeg",
+                caption: "Parent-supported sessions build confidence in the water"
+              }
+            ]
+          },
+          "speech-therapy": {
+            title: "Speech Therapy",
+            description: [
+              "Dynamic speech-language sessions span articulation, expressive language, AAC, feeding, and pragmatic social skills.",
+              "Therapists weave literacy, play themes, and peer practice to keep every child engaged during one-on-one and small-group visits."
+            ],
+            images: [
+              {
+                src: "../assets/steps/Speech/bergen pediatric speech therapy.jpeg",
+                caption: "Targeting speech sounds with motivating visuals"
+              },
+              {
+                src: "../assets/steps/Speech/social groups therapy.jpeg",
+                caption: "Group sessions that model social conversation"
+              },
+              {
+                src: "../assets/steps/Speech/Social Skills Groups Speech Therapy.jpeg",
+                caption: "Peer-led social skills groups"
+              }
+            ]
+          },
+          "occupational-therapy": {
+            title: "Occupational Therapy",
+            description: [
+              "OT labs focus on sensory integration, fine-motor control, handwriting, feeding, and emotional regulation routines.",
+              "We individualize each plan with caregiver coaching so gains at the clinic transfer to home, school, and the community."
+            ],
+            images: [
+              {
+                src: "../assets/steps/Occupational/Boy in Pediatric Occupational Therapy.jpeg",
+                caption: "Motor planning inside our sensory gym"
+              },
+              {
+                src: "../assets/steps/Occupational/12.jpg.jpeg",
+                caption: "Fine-motor strengthening through play"
+              }
+            ]
+          },
+          "physical-therapy": {
+            title: "Physical Therapy",
+            description: [
+              "Physical therapists blend obstacle courses, balance challenges, and gait coaching to build strength and endurance.",
+              "Every activity is disguised as play so kids stay motivated while mastering functional goals."
+            ],
+            images: [
+              {
+                src: "../assets/steps/Physical/boy in Pediatric Physical Therapy.jpeg",
+                caption: "Balance and core work inside the movement gym"
+              }
+            ]
+          },
+          "listening-therapy": {
+            title: "Listening Therapy",
+            description: [
+              "Certified therapists implement evidence-based listening programs that target auditory processing, regulation, and attention.",
+              "Families receive home carryover plans and coaching so the calming benefits continue outside the clinic."
+            ],
+            images: [
+              {
+                src: "../assets/steps/Listening/Lisa Koo giving listening therapy at bergen Pediatric Therapy.jpeg",
+                caption: "Personalized listening sessions guided by licensed therapists"
+              }
+            ]
+          },
+          "swim-lessons": {
+            title: "Swim Lessons",
+            description: [
+              "Adaptive swim instructors teach water safety, floating, and stroke mechanics inside our sensory-friendly warm-water pool.",
+              "We accommodate every learner with visual supports, lifts, and parent coaching so confidence grows each visit."
+            ],
+            images: [
+              {
+                src: "../assets/steps/Swim Lessons/heated-shallow-saltwater-pool.jpg.jpeg",
+                caption: "Shallow heated pool ideal for new swimmers"
+              },
+              {
+                src: "../assets/steps/Swim Lessons/hoyer-lift-for-pool.jpeg",
+                caption: "Pool access with supportive equipment"
+              },
+              {
+                src: "../assets/steps/Swim Lessons/Kristen the swim instructor.jpeg",
+                caption: "Certified instructors who specialize in pediatrics"
+              },
+              {
+                src: "../assets/steps/Swim Lessons/mommy-and-me in pool.jpeg",
+                caption: "Caregiver-assisted sessions for extra reassurance"
+              }
+            ]
+          }
+        };
 
-      navToggle.addEventListener("click", () => navMenu.classList.toggle("open"));
-      navMenu.querySelectorAll("a").forEach((link) =>
+        const updateBodyScrollLock = () => {
+          const shouldLock = serviceModal && serviceModal.classList.contains("is-open");
+          document.body.style.overflow = shouldLock ? "hidden" : "";
+        };
+
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("open");
+        if (
+          !navMenu.classList.contains("open") &&
+          navDropdown &&
+          navDropdown.classList.contains("open")
+        ) {
+          navDropdown.classList.remove("open");
+          if (dropdownToggle) dropdownToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+      Array.prototype.forEach.call(navMenu.querySelectorAll("a"), (link) => {
         link.addEventListener("click", () => {
           if (navMenu.classList.contains("open")) navMenu.classList.remove("open");
-        })
-      );
-
-      let testimonialIndex = 0;
-      const testimonials = Array.from(testimonialTrack.children);
-
-      function moveTestimonials(direction) {
-        testimonialIndex = (testimonialIndex + direction + testimonials.length) % testimonials.length;
-        testimonialTrack.style.transform = `translateX(-${testimonialIndex * 100}%)`;
-      }
-
-      testimonialButtons.forEach((button) => {
-        button.addEventListener("click", () => moveTestimonials(Number(button.dataset.shift)));
+          if (navDropdown && navDropdown.classList.contains("open")) {
+            navDropdown.classList.remove("open");
+            if (dropdownToggle) dropdownToggle.setAttribute("aria-expanded", "false");
+          }
+        });
       });
 
-      setInterval(() => moveTestimonials(1), 6000);
+      if (dropdownToggle && navDropdown) {
+        const dropdownLinks = navDropdown.querySelectorAll(".dropdown-menu a");
 
-      document.getElementById("year").textContent = new Date().getFullYear();
+        const closeDropdown = () => {
+          navDropdown.classList.remove("open");
+          dropdownToggle.setAttribute("aria-expanded", "false");
+        };
+
+        dropdownToggle.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isExpanded = dropdownToggle.getAttribute("aria-expanded") === "true";
+          dropdownToggle.setAttribute("aria-expanded", (!isExpanded).toString());
+          navDropdown.classList.toggle("open", !isExpanded);
+        });
+
+        Array.prototype.forEach.call(dropdownLinks, (link) => {
+          link.addEventListener("click", () => closeDropdown());
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!navDropdown.contains(event.target) && navDropdown.classList.contains("open")) {
+            closeDropdown();
+          }
+        });
+      }
+
+      const focusConsultationForm = () => {
+        if (!consultationPanel) return;
+        consultationPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (!consultationForm) return;
+        const firstField = consultationForm.querySelector("input, textarea, select");
+        if (firstField) {
+          setTimeout(() => {
+            try {
+              firstField.focus({ preventScroll: true });
+            } catch (error) {
+              firstField.focus();
+            }
+          }, 500);
+        }
+      };
+
+      function openServiceModal(serviceKey) {
+        if (!serviceModal || !serviceModalTitle || !serviceModalContent || !serviceModalGallery) return;
+        const detail = serviceDetails[serviceKey];
+        if (!detail) return;
+        serviceModalTitle.textContent = detail.title;
+        serviceModalContent.innerHTML = detail.description.map((text) => `<p>${text}</p>`).join("");
+        serviceModalGallery.innerHTML = detail.images
+          .map(
+            (image) => `
+            <figure>
+              <img src="${image.src}" alt="${image.caption}" />
+              <figcaption>${image.caption}</figcaption>
+            </figure>`
+          )
+          .join("");
+        serviceModal.classList.add("is-open");
+        serviceModal.setAttribute("aria-hidden", "false");
+        updateBodyScrollLock();
+      }
+
+      function closeServiceModal() {
+        if (!serviceModal) return;
+        serviceModal.classList.remove("is-open");
+        serviceModal.setAttribute("aria-hidden", "true");
+        updateBodyScrollLock();
+      }
+
+      const setHeroLocationMessage = (message, isError = false) => {
+        if (!heroLocationMessage) return;
+        heroLocationMessage.textContent = message || "";
+        heroLocationMessage.classList.toggle("is-error", Boolean(message) && isError);
+      };
+
+      if (heroMapLink) {
+        const destination = heroMapLink.dataset.destination || "";
+        heroMapLink.addEventListener("click", (event) => {
+          event.preventDefault();
+          setHeroLocationMessage("");
+
+          if (!navigator.geolocation) {
+            setHeroLocationMessage("Your browser doesn't support location access.", true);
+            return;
+          }
+
+          const destinationParam = encodeURIComponent(destination);
+          const openDirections = (coords) => {
+            const originParam = `${coords.latitude},${coords.longitude}`;
+            const directionUrl = `https://www.google.com/maps/dir/?api=1&origin=${originParam}&destination=${destinationParam}&travelmode=driving`;
+            window.open(directionUrl, "_blank", "noopener,noreferrer");
+          };
+
+          const requestGeolocation = () => {
+            setHeroLocationMessage("Requesting your location…", false);
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                setHeroLocationMessage("");
+                openDirections(position.coords);
+              },
+              (error) => {
+                if (error && error.code === error.PERMISSION_DENIED) {
+                  setHeroLocationMessage("Location access denied. Please enable location services to get directions.", true);
+                } else if (error && error.code === error.POSITION_UNAVAILABLE) {
+                  setHeroLocationMessage("Unable to determine your location. Please try again.", true);
+                } else if (error && error.code === error.TIMEOUT) {
+                  setHeroLocationMessage("Location request timed out. Please try again.", true);
+                } else {
+                  setHeroLocationMessage("Unable to determine your location. Please try again.", true);
+                }
+              },
+              { enableHighAccuracy: true, timeout: 15000 }
+            );
+          };
+
+          if (navigator.permissions && navigator.permissions.query) {
+            navigator.permissions
+              .query({ name: "geolocation" })
+              .then((result) => {
+                if (result.state === "denied") {
+                  setHeroLocationMessage("Location access denied. Please enable location services to get directions.", true);
+                } else {
+                  if (result.state === "prompt") {
+                    setHeroLocationMessage("Please allow location access to open directions.", false);
+                  }
+                  requestGeolocation();
+                }
+              })
+              .catch(() => requestGeolocation());
+          } else {
+            requestGeolocation();
+          }
+        });
+      }
+
+      Array.prototype.forEach.call(formTriggers, (trigger) => {
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          focusConsultationForm();
+        });
+      });
+
+      if (announcementBanner) {
+        let announcementHideTimeout;
+        const hideAnnouncement = () => {
+          if (announcementHideTimeout) {
+            clearTimeout(announcementHideTimeout);
+            announcementHideTimeout = null;
+          }
+          announcementBanner.classList.remove("is-visible");
+          document.removeEventListener("click", handleDocumentClick);
+        };
+
+        const handleDocumentClick = (event) => {
+          if (!announcementBanner.contains(event.target)) {
+            hideAnnouncement();
+          }
+        };
+
+        document.addEventListener("click", handleDocumentClick);
+        requestAnimationFrame(() => {
+          announcementBanner.classList.add("is-visible");
+          announcementHideTimeout = setTimeout(() => hideAnnouncement(), 7000);
+        });
+
+        if (announcementClose) {
+          announcementClose.addEventListener("click", () => {
+            hideAnnouncement();
+          });
+        }
+      }
+
+      if (consultationPhoneInput) {
+        const formatPhoneNumber = (value) => {
+          const digits = value.replace(/\D/g, "").slice(0, 10);
+          const len = digits.length;
+
+          if (!len) return "";
+          if (len < 4) return `(${digits}`;
+          if (len < 7) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+          return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+        };
+
+        consultationPhoneInput.addEventListener("input", (event) => {
+          const formatted = formatPhoneNumber(event.target.value);
+          event.target.value = formatted;
+        });
+
+        consultationPhoneInput.addEventListener("blur", (event) => {
+          event.target.value = formatPhoneNumber(event.target.value);
+        });
+      }
+
+      serviceDetailButtons.forEach((button) => {
+        button.addEventListener("click", () => openServiceModal(button.dataset.service));
+      });
+
+      if (serviceModalClose) {
+        serviceModalClose.addEventListener("click", () => closeServiceModal());
+      }
+
+      if (serviceModal) {
+        serviceModal.addEventListener("click", (event) => {
+          if (event.target.classList.contains("service-modal__backdrop")) {
+            closeServiceModal();
+          }
+        });
+      }
+
+      navProgramLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          const serviceKey = link.dataset.service;
+          if (navDropdown && navDropdown.classList.contains("open")) {
+            navDropdown.classList.remove("open");
+            if (dropdownToggle) dropdownToggle.setAttribute("aria-expanded", "false");
+          }
+          if (navMenu.classList.contains("open")) navMenu.classList.remove("open");
+          openServiceModal(serviceKey);
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") return;
+        if (serviceModal && serviceModal.classList.contains("is-open")) {
+          closeServiceModal();
+        }
+      });
+
+      if (consultationForm) {
+        consultationForm.addEventListener("submit", (event) => {
+          if (!consultationForm.checkValidity()) {
+            event.preventDefault();
+            consultationForm.reportValidity();
+            return;
+          }
+
+          event.preventDefault();
+          consultationForm.reset();
+          if (formToast) {
+            formToast.classList.add("is-visible");
+            setTimeout(() => formToast.classList.remove("is-visible"), 4000);
+          }
+        });
+      }
+
+      if (aboutImage && aboutPhotos.length > 1) {
+        aboutPhotos.forEach((src) => {
+          const img = new Image();
+          img.src = src;
+        });
+
+        let aboutPhotoIndex = 0;
+        let aboutInterval;
+        let isAnimating = false;
+
+        function updateAboutPhoto(direction = 1) {
+          if (isAnimating) return;
+          isAnimating = true;
+          aboutImage.classList.add("is-fading");
+          setTimeout(() => {
+            aboutPhotoIndex = (aboutPhotoIndex + direction + aboutPhotos.length) % aboutPhotos.length;
+            aboutImage.src = aboutPhotos[aboutPhotoIndex];
+            aboutImage.classList.remove("is-fading");
+            setTimeout(() => {
+              isAnimating = false;
+            }, 600);
+          }, 600);
+        }
+
+        function startAboutRotation() {
+          aboutInterval = setInterval(() => updateAboutPhoto(1), 6000);
+        }
+
+        function resetAboutRotation() {
+          clearInterval(aboutInterval);
+          startAboutRotation();
+        }
+
+        startAboutRotation();
+
+        document.querySelectorAll(".about-control-btn").forEach((button) => {
+          button.addEventListener("click", () => {
+            const direction = Number(button.dataset.direction);
+            updateAboutPhoto(direction);
+            resetAboutRotation();
+          });
+        });
+      }
+
+        const yearEl = document.getElementById("year");
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initPageInteractions);
+      } else {
+        initPageInteractions();
+      }
     </script>
   </body>
 </html>
